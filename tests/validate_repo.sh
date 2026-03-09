@@ -20,8 +20,12 @@ required_files=(
   "docs/WORKFLOWS.md"
   "docs/CUSTOMIZATION.md"
   "docs/ADVANCED-CODEX-POWER.md"
+  "docs/SETUP-DOCTOR.md"
   "scripts/bootstrap.sh"
   "scripts/bootstrap.ps1"
+  "scripts/codex-doctor.sh"
+  "scripts/codex-doctor.ps1"
+  "tests/doctor_smoke.sh"
 )
 
 skills=(
@@ -86,6 +90,7 @@ grep -q "^## What It Is$" "${ROOT_DIR}/README.md" || fail "README missing What I
 grep -q "^## Start Here$" "${ROOT_DIR}/README.md" || fail "README missing Start Here section"
 grep -q "^## Default Workflow$" "${ROOT_DIR}/README.md" || fail "README missing Default Workflow section"
 grep -q "^## What's Included$" "${ROOT_DIR}/README.md" || fail "README missing What's Included section"
+grep -q "bash scripts/codex-doctor.sh" "${ROOT_DIR}/README.md" || fail "README must mention the shell doctor entrypoint"
 grep -q "^## 이 프로젝트는 무엇인가$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing project intro section"
 grep -q "^## 바로 시작하기$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing quick start section"
 grep -q "^## 기본 워크플로우$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing workflow section"
@@ -95,10 +100,16 @@ grep -q "bootstrap.sh" "${ROOT_DIR}/README.md" || fail "README must mention boot
 grep -Fq '$codex-setup-check' "${ROOT_DIR}/README.md" || fail 'README must mention $codex-setup-check'
 grep -q "bootstrap.sh" "${ROOT_DIR}/README.ko.md" || fail "Korean README must mention bootstrap.sh"
 grep -Fq '$codex-setup-check' "${ROOT_DIR}/README.ko.md" || fail 'Korean README must mention $codex-setup-check'
+grep -q "bash scripts/codex-doctor.sh" "${ROOT_DIR}/docs/FIRST-STEPS.md" || fail "First Steps must mention the shell doctor command"
+grep -q "pwsh -File scripts/codex-doctor.ps1" "${ROOT_DIR}/docs/FIRST-STEPS.md" || fail "First Steps must mention the PowerShell doctor command"
 ! grep -q "Claude Forge Translation" "${ROOT_DIR}/README.md" || fail "README should not contain Claude Forge Translation section"
 ! grep -q "Claude Forge 방식과의 대응" "${ROOT_DIR}/README.ko.md" || fail "Korean README should not contain Claude Forge comparison section"
 ! grep -q "Repository Layout" "${ROOT_DIR}/README.md" || fail "README should not contain Repository Layout section"
 ! grep -q "저장소 구조" "${ROOT_DIR}/README.ko.md" || fail "Korean README should not contain repository layout section"
+grep -q "PASS / WARN / FAIL" "${ROOT_DIR}/docs/SETUP-DOCTOR.md" || fail "Setup Doctor doc must explain PASS / WARN / FAIL"
+grep -q "/debug-config" "${ROOT_DIR}/docs/SETUP-DOCTOR.md" || fail "Setup Doctor doc must mention /debug-config"
+grep -q "/mcp" "${ROOT_DIR}/docs/SETUP-DOCTOR.md" || fail "Setup Doctor doc must mention /mcp"
+grep -q "/status" "${ROOT_DIR}/docs/SETUP-DOCTOR.md" || fail "Setup Doctor doc must mention /status"
 
 if compgen -G "${ROOT_DIR}/.agents/skills/*/agents/openai.yaml" > /dev/null; then
   while IFS= read -r yaml_file; do

@@ -25,6 +25,9 @@ grep -q ".agents/skills/feature-design" "${DRY_RUN_LOG}" || fail "dry-run output
 grep -q ".codex/config.multi-agent.example.toml" "${DRY_RUN_LOG}" || fail "dry-run output should mention advanced config"
 grep -q ".codex/agents/reviewer.toml" "${DRY_RUN_LOG}" || fail "dry-run output should mention advanced agent configs"
 grep -q "docs/ADVANCED-CODEX-POWER.md" "${DRY_RUN_LOG}" || fail "dry-run output should mention advanced docs"
+grep -q "scripts/codex-doctor.sh" "${DRY_RUN_LOG}" || fail "dry-run output should mention shell doctor"
+grep -q "scripts/codex-doctor.ps1" "${DRY_RUN_LOG}" || fail "dry-run output should mention PowerShell doctor"
+grep -q "docs/SETUP-DOCTOR.md" "${DRY_RUN_LOG}" || fail "dry-run output should mention setup doctor docs"
 
 "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}"
 
@@ -34,6 +37,9 @@ grep -q "docs/ADVANCED-CODEX-POWER.md" "${DRY_RUN_LOG}" || fail "dry-run output 
 [[ -f "${TARGET_DIR}/.codex/config.multi-agent.example.toml" ]] || fail "bootstrap should copy the multi-agent config example"
 [[ -f "${TARGET_DIR}/.codex/agents/reviewer.toml" ]] || fail "bootstrap should copy advanced agent configs"
 [[ -f "${TARGET_DIR}/docs/ADVANCED-CODEX-POWER.md" ]] || fail "bootstrap should copy the advanced docs"
+[[ -f "${TARGET_DIR}/scripts/codex-doctor.sh" ]] || fail "bootstrap should copy the shell doctor"
+[[ -f "${TARGET_DIR}/scripts/codex-doctor.ps1" ]] || fail "bootstrap should copy the PowerShell doctor"
+[[ -f "${TARGET_DIR}/docs/SETUP-DOCTOR.md" ]] || fail "bootstrap should copy the setup doctor docs"
 
 echo "user-owned" > "${TARGET_DIR}/AGENTS.md"
 if "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}" > "${TMP_DIR}/overwrite.log" 2>&1; then

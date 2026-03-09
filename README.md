@@ -44,7 +44,13 @@ cd <your-new-repo-name>
 $codex-setup-check
 ```
 
-6. Then start work with the default path:
+6. Run the executable setup diagnosis:
+
+```bash
+bash scripts/codex-doctor.sh
+```
+
+7. Then start work with the default path:
 
 ```text
 $feature-design
@@ -75,11 +81,18 @@ bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry
 $codex-setup-check
 ```
 
+5. Then run:
+
+```bash
+bash scripts/codex-doctor.sh
+```
+
 PowerShell works too:
 
 ```powershell
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target . -DryRun
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target .
+pwsh -File scripts\codex-doctor.ps1
 ```
 
 ## Default Workflow
@@ -109,6 +122,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - Eight repo-local skills: `feature-design`, `implementation-plan`, `tdd-implement`, `systematic-debug`, `request-code-review`, `verification-gate`, `finish-branch`, `codex-setup-check`.
 - Minimal `.codex` examples: `.codex/config.example.toml` and `.codex/mcp/README.md`.
 - Opt-in multi-agent layer: `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
+- Executable doctor scripts: `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1`.
 - Safe bootstrap scripts: `scripts/bootstrap.sh` and `scripts/bootstrap.ps1`.
 
 ## Verification
@@ -126,3 +140,4 @@ bash tests/bootstrap_safety.sh
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)
+- [Setup Doctor](docs/SETUP-DOCTOR.md)

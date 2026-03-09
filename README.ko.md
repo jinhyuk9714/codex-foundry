@@ -44,7 +44,13 @@ cd <새-레포-이름>
 $codex-setup-check
 ```
 
-6. 그다음 기본 작업 흐름으로 들어갑니다.
+6. 이어서 실제 setup 진단을 실행합니다.
+
+```bash
+bash scripts/codex-doctor.sh
+```
+
+7. 그다음 기본 작업 흐름으로 들어갑니다.
 
 ```text
 $feature-design
@@ -75,11 +81,18 @@ bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry
 $codex-setup-check
 ```
 
+5. 이어서 아래를 실행합니다.
+
+```bash
+bash scripts/codex-doctor.sh
+```
+
 PowerShell도 지원합니다.
 
 ```powershell
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target . -DryRun
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target .
+pwsh -File scripts\codex-doctor.ps1
 ```
 
 ## 기본 워크플로우
@@ -109,6 +122,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - 8개 repo-local 스킬: `feature-design`, `implementation-plan`, `tdd-implement`, `systematic-debug`, `request-code-review`, `verification-gate`, `finish-branch`, `codex-setup-check`
 - 최소 `.codex` 예시: `.codex/config.example.toml`, `.codex/mcp/README.md`
 - 선택형 multi-agent 레이어: `.codex/config.multi-agent.example.toml`, `.codex/agents/`
+- 실행형 doctor 스크립트: `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`
 - 안전한 주입 스크립트: `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`
 
 ## 검증
@@ -126,3 +140,4 @@ bash tests/bootstrap_safety.sh
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)
+- [Setup Doctor](docs/SETUP-DOCTOR.md)

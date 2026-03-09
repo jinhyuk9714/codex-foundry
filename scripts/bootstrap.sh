@@ -73,7 +73,10 @@ paths=(
   ".codex/agents/reviewer.toml"
   ".codex/agents/docs-researcher.toml"
   ".codex/mcp/README.md"
+  "scripts/codex-doctor.sh"
+  "scripts/codex-doctor.ps1"
   "docs/ADVANCED-CODEX-POWER.md"
+  "docs/SETUP-DOCTOR.md"
   "docs/FIRST-STEPS.md"
   "docs/WORKFLOWS.md"
   "docs/CUSTOMIZATION.md"
@@ -116,4 +119,4 @@ for rel in "${paths[@]}"; do
 done
 
 echo "Bootstrap complete."
-echo "Next step: open the target repo in Codex and run \$codex-setup-check."
+echo "Next step: open the target repo in Codex, run \$codex-setup-check, then run bash scripts/codex-doctor.sh."

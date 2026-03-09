@@ -7,6 +7,8 @@ Use this checklist when you open `codex-foundry` in Codex CLI or the Codex app f
 - Open the repository root.
 - Read the root `AGENTS.md`.
 - Run `$codex-setup-check`.
+- Run `bash scripts/codex-doctor.sh`.
+- If you prefer PowerShell, run `pwsh -File scripts/codex-doctor.ps1`.
 
 ## 2. Pick the Right Entry Skill
 
@@ -34,6 +36,7 @@ For feature work, use this sequence:
 ## 5. Verify Before You Trust the Kit
 
 ```bash
+bash scripts/codex-doctor.sh
 bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
 ```
