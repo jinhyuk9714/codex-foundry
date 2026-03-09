@@ -82,6 +82,23 @@ done
 grep -q "Advanced Codex Power" "${ROOT_DIR}/README.md" || fail "README missing Advanced Codex Power section"
 grep -q "고급 Codex 기능" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing advanced power section"
 grep -q "multi-agent" "${ROOT_DIR}/docs/ADVANCED-CODEX-POWER.md" || fail "advanced power doc must describe multi-agent usage"
+grep -q "^## What It Is$" "${ROOT_DIR}/README.md" || fail "README missing What It Is section"
+grep -q "^## Start Here$" "${ROOT_DIR}/README.md" || fail "README missing Start Here section"
+grep -q "^## Default Workflow$" "${ROOT_DIR}/README.md" || fail "README missing Default Workflow section"
+grep -q "^## What's Included$" "${ROOT_DIR}/README.md" || fail "README missing What's Included section"
+grep -q "^## 이 프로젝트는 무엇인가$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing project intro section"
+grep -q "^## 바로 시작하기$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing quick start section"
+grep -q "^## 기본 워크플로우$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing workflow section"
+grep -q "^## 포함 내용$" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing included items section"
+grep -q "Use this template" "${ROOT_DIR}/README.md" || fail "README must mention Use this template"
+grep -q "bootstrap.sh" "${ROOT_DIR}/README.md" || fail "README must mention bootstrap.sh"
+grep -Fq '$codex-setup-check' "${ROOT_DIR}/README.md" || fail 'README must mention $codex-setup-check'
+grep -q "bootstrap.sh" "${ROOT_DIR}/README.ko.md" || fail "Korean README must mention bootstrap.sh"
+grep -Fq '$codex-setup-check' "${ROOT_DIR}/README.ko.md" || fail 'Korean README must mention $codex-setup-check'
+! grep -q "Claude Forge Translation" "${ROOT_DIR}/README.md" || fail "README should not contain Claude Forge Translation section"
+! grep -q "Claude Forge 방식과의 대응" "${ROOT_DIR}/README.ko.md" || fail "Korean README should not contain Claude Forge comparison section"
+! grep -q "Repository Layout" "${ROOT_DIR}/README.md" || fail "README should not contain Repository Layout section"
+! grep -q "저장소 구조" "${ROOT_DIR}/README.ko.md" || fail "Korean README should not contain repository layout section"
 
 if compgen -G "${ROOT_DIR}/.agents/skills/*/agents/openai.yaml" > /dev/null; then
   while IFS= read -r yaml_file; do
