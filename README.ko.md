@@ -4,8 +4,11 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-16a34a?style=flat-square)](LICENSE)
 [![Codex](https://img.shields.io/badge/Codex-CLI%2FApp-111827?style=flat-square)](https://developers.openai.com/codex/)
 [![Repo-local](https://img.shields.io/badge/repo--local-self--contained-7c3aed?style=flat-square)](https://developers.openai.com/codex/concepts/customization/)
+[![repo-ci](https://github.com/jinhyuk9714/codex-foundry/actions/workflows/repo-ci.yml/badge.svg)](https://github.com/jinhyuk9714/codex-foundry/actions/workflows/repo-ci.yml)
 
 [English](README.md) | 한국어
+
+Template note: 이 CI 배지는 upstream 템플릿 레포용입니다. 이 템플릿으로 만든 하위 레포에서는 교체하거나 제거하세요.
 
 Codex 스킬, 워크플로우, bootstrap 설정을 위한 repo-local, self-contained 스타터킷입니다.
 
@@ -147,6 +150,8 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 ```bash
 bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
+bash tests/profile_smoke.sh
+bash tests/doctor_smoke.sh
 ```
 
 ## 문서

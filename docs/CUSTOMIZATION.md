@@ -70,6 +70,14 @@ By default the scripts:
 - refuse to overwrite existing files,
 - support dry-run output before making changes.
 
+## Template Consumers
+
+If you create a new repository from this template:
+
+- Replace or remove the upstream CI badge in `README.md` and `README.ko.md`.
+- Copy or adapt `.github/workflows/repo-ci.yml` only if you want the same verification gate in your own repository.
+- Keep your repository's real verification commands aligned with the workflow steps instead of leaving the upstream defaults in place.
+
 ## Updating the Kit
 
 When you add or rename a workflow:

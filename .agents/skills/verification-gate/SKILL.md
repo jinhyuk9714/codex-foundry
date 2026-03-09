@@ -21,6 +21,7 @@ Do not claim success without fresh evidence.
 - `bash tests/validate_repo.sh`
 - `bash tests/bootstrap_safety.sh`
 - `bash tests/profile_smoke.sh`
+- `bash tests/doctor_smoke.sh`
 
 ## Rules
 

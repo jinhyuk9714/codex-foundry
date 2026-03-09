@@ -18,3 +18,4 @@
 - Run `bash tests/validate_repo.sh`.
 - Run `bash tests/bootstrap_safety.sh`.
 - Run `bash tests/profile_smoke.sh`.
+- Run `bash tests/doctor_smoke.sh`.

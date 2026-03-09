@@ -9,6 +9,7 @@ required_files=(
   "README.ko.md"
   "AGENTS.md"
   "LICENSE"
+  ".github/workflows/repo-ci.yml"
   ".gitignore"
   ".codex/config.example.toml"
   ".codex/config.multi-agent.example.toml"
@@ -65,6 +66,25 @@ done
 
 grep -q "Template Repository" "${ROOT_DIR}/README.md" || fail "README missing Template Repository badge marker"
 grep -q "MIT License" "${ROOT_DIR}/README.md" || fail "README missing MIT License badge marker"
+grep -q "repo-ci" "${ROOT_DIR}/README.md" || fail "README missing repo-ci badge marker"
+grep -q "upstream template repo" "${ROOT_DIR}/README.md" || fail "README must warn about the upstream CI badge"
+grep -q "repo-ci" "${ROOT_DIR}/README.ko.md" || fail "Korean README missing repo-ci badge marker"
+grep -q "upstream 템플릿 레포용입니다" "${ROOT_DIR}/README.ko.md" || fail "Korean README must warn about the upstream CI badge"
+grep -q "^## Template Consumers$" "${ROOT_DIR}/docs/CUSTOMIZATION.md" || fail "Customization doc must define a Template Consumers section"
+grep -q "repo-ci.yml" "${ROOT_DIR}/docs/CUSTOMIZATION.md" || fail "Customization doc must mention repo-ci.yml"
+grep -q "Replace or remove" "${ROOT_DIR}/docs/CUSTOMIZATION.md" || fail "Customization doc must explain the upstream CI badge handoff"
+
+grep -q "^name: repo-ci$" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must declare the correct name"
+grep -q "^on:" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must define triggers"
+grep -q "push:" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must run on push"
+grep -q "pull_request:" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must run on pull_request"
+grep -q "workflow_dispatch:" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must support workflow_dispatch"
+grep -q "main" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must target main"
+grep -q "ubuntu-latest" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must use ubuntu-latest"
+grep -q "bash tests/validate_repo.sh" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must run validate_repo.sh"
+grep -q "bash tests/bootstrap_safety.sh" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must run bootstrap_safety.sh"
+grep -q "bash tests/profile_smoke.sh" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must run profile_smoke.sh"
+grep -q "bash tests/doctor_smoke.sh" "${ROOT_DIR}/.github/workflows/repo-ci.yml" || fail "repo-ci workflow must run doctor_smoke.sh"
 
 for skill in "${skills[@]}"; do
   skill_file="${ROOT_DIR}/.agents/skills/${skill}/SKILL.md"

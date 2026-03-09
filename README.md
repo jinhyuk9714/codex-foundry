@@ -4,8 +4,11 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-16a34a?style=flat-square)](LICENSE)
 [![Codex](https://img.shields.io/badge/Codex-CLI%2FApp-111827?style=flat-square)](https://developers.openai.com/codex/)
 [![Repo-local](https://img.shields.io/badge/repo--local-self--contained-7c3aed?style=flat-square)](https://developers.openai.com/codex/concepts/customization/)
+[![repo-ci](https://github.com/jinhyuk9714/codex-foundry/actions/workflows/repo-ci.yml/badge.svg)](https://github.com/jinhyuk9714/codex-foundry/actions/workflows/repo-ci.yml)
 
 English | [한국어](README.ko.md)
+
+Template note: this CI badge belongs to the upstream template repo. Replace or remove it after you use this template in your own repository.
 
 Repo-local, self-contained starter kit for Codex skills, workflows, and bootstrap setup.
 
@@ -147,6 +150,8 @@ Run the repo checks before claiming the kit is ready:
 ```bash
 bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
+bash tests/profile_smoke.sh
+bash tests/doctor_smoke.sh
 ```
 
 ## Docs

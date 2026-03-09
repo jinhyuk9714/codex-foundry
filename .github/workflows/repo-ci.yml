@@ -1,0 +1,32 @@
+name: repo-ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate repo structure
+        run: bash tests/validate_repo.sh
+
+      - name: Check bootstrap safety
+        run: bash tests/bootstrap_safety.sh
+
+      - name: Check stack profiles
+        run: bash tests/profile_smoke.sh
+
+      - name: Check setup doctor
+        run: bash tests/doctor_smoke.sh
