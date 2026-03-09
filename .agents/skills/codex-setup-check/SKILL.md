@@ -15,8 +15,9 @@ Confirm that the repository is ready for Codex to work the intended way, then ro
 4. Confirm `.codex/config.example.toml` and `.codex/mcp/README.md` exist.
 5. Confirm `.codex/config.multi-agent.example.toml` and `.codex/agents/*.toml` are internally consistent when present.
 6. Tell the user to run `bash scripts/codex-doctor.sh` or `pwsh -File scripts/codex-doctor.ps1` for the executable diagnosis pass.
-7. Use the doctor output to point them at the next command, such as `/status`, `/debug-config`, or `/mcp`.
-8. Report any missing pieces with the smallest corrective action.
+7. After the doctor, point the user at `docs/PROMPT-PLAYBOOKS.md` or `docs/PROMPT-PLAYBOOKS.ko.md` if they want copy-paste prompts.
+8. Use the doctor output to point them at the next command, such as `/status`, `/debug-config`, or `/mcp`.
+9. Report any missing pieces with the smallest corrective action.
 
 ## Rules
 

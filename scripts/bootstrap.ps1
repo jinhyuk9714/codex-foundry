@@ -27,6 +27,8 @@ $paths = @(
     "scripts/codex-doctor.sh",
     "scripts/codex-doctor.ps1",
     "docs/ADVANCED-CODEX-POWER.md",
+    "docs/PROMPT-PLAYBOOKS.md",
+    "docs/PROMPT-PLAYBOOKS.ko.md",
     "docs/SETUP-DOCTOR.md",
     "docs/FIRST-STEPS.md",
     "docs/WORKFLOWS.md",

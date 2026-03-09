@@ -50,7 +50,8 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
-7. 그다음 기본 작업 흐름으로 들어갑니다.
+7. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
+8. 그다음 기본 작업 흐름으로 들어갑니다.
 
 ```text
 $feature-design
@@ -87,6 +88,8 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
+6. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
+
 PowerShell도 지원합니다.
 
 ```powershell
@@ -96,6 +99,8 @@ pwsh -File scripts\codex-doctor.ps1
 ```
 
 ## 기본 워크플로우
+
+이 흐름을 그대로 복붙해서 쓰고 싶다면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 보면 됩니다.
 
 - 새 기능: `feature-design` -> `implementation-plan` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
 - 버그 수정: `systematic-debug` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
@@ -123,6 +128,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - 최소 `.codex` 예시: `.codex/config.example.toml`, `.codex/mcp/README.md`
 - 선택형 multi-agent 레이어: `.codex/config.multi-agent.example.toml`, `.codex/agents/`
 - 실행형 doctor 스크립트: `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`
+- Prompt Playbooks: `docs/PROMPT-PLAYBOOKS.ko.md`에서 bootstrap, feature, bugfix 예시 제공
 - 안전한 주입 스크립트: `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`
 
 ## 검증
@@ -137,6 +143,7 @@ bash tests/bootstrap_safety.sh
 ## 문서
 
 - [First Steps](docs/FIRST-STEPS.md)
+- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)

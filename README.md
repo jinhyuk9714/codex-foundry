@@ -50,7 +50,8 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
-7. Then start work with the default path:
+7. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
+8. Then start work with the default path:
 
 ```text
 $feature-design
@@ -87,6 +88,8 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
+6. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
+
 PowerShell works too:
 
 ```powershell
@@ -96,6 +99,8 @@ pwsh -File scripts\codex-doctor.ps1
 ```
 
 ## Default Workflow
+
+For copy-paste prompt versions of these flows, use [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
 
 - New feature: `feature-design` -> `implementation-plan` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
 - Bug fix: `systematic-debug` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
@@ -123,6 +128,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - Minimal `.codex` examples: `.codex/config.example.toml` and `.codex/mcp/README.md`.
 - Opt-in multi-agent layer: `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
 - Executable doctor scripts: `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1`.
+- Prompt playbooks: `docs/PROMPT-PLAYBOOKS.md` for bootstrap, feature, and bugfix flows.
 - Safe bootstrap scripts: `scripts/bootstrap.sh` and `scripts/bootstrap.ps1`.
 
 ## Verification
@@ -137,6 +143,7 @@ bash tests/bootstrap_safety.sh
 ## Docs
 
 - [First Steps](docs/FIRST-STEPS.md)
+- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)

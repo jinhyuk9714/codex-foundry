@@ -2,6 +2,8 @@
 
 This kit focuses on a small number of repeatable, high-signal workflows.
 
+If you want copy-paste prompts instead of the conceptual workflow summaries below, use [Prompt Playbooks](PROMPT-PLAYBOOKS.md).
+
 ## Feature Flow
 
 Use this sequence for new capabilities:
@@ -22,6 +24,8 @@ Use this sequence for new capabilities:
 - `verification-gate`: blocks completion claims until fresh commands prove the state.
 - `finish-branch`: summarizes change scope, risks, and the next integration step.
 
+Use [Prompt Playbooks](PROMPT-PLAYBOOKS.md#feature-playbook) for the copy-paste version.
+
 ## Bug Fix Flow
 
 Use this sequence when behavior is broken or uncertain:
@@ -38,6 +42,8 @@ Use this sequence when behavior is broken or uncertain:
 - `tdd-implement` adds the regression test before the code change.
 - `verification-gate` reruns the exact commands that prove the bug is fixed.
 
+Use [Prompt Playbooks](PROMPT-PLAYBOOKS.md#bugfix-playbook) for the copy-paste version.
+
 ## Setup Flow
 
 Use `codex-setup-check` at the start of a session, after bootstrap, or when Codex behavior seems off.
@@ -51,6 +57,8 @@ It confirms:
 - `.codex/mcp/README.md` documents the optional MCP setup,
 - any opt-in `.codex/config.multi-agent.example.toml` references valid role configs,
 - the repo verification commands are clear.
+
+Use [Prompt Playbooks](PROMPT-PLAYBOOKS.md#bootstrap-playbook) for the copy-paste setup flow.
 
 ## Advanced Review Flow
 
