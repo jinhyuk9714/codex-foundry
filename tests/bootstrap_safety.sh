@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BOOTSTRAP="${ROOT_DIR}/scripts/bootstrap.sh"
+
+fail() {
+  echo "FAIL: $*" >&2
+  exit 1
+}
+
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "${TMP_DIR}"' EXIT
+
+DRY_RUN_LOG="${TMP_DIR}/dry-run.log"
+TARGET_DIR="${TMP_DIR}/target"
+mkdir -p "${TARGET_DIR}"
+
+"${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}" --dry-run > "${DRY_RUN_LOG}"
+
+[[ ! -e "${TARGET_DIR}/AGENTS.md" ]] || fail "dry-run should not create files"
+grep -q "AGENTS.md" "${DRY_RUN_LOG}" || fail "dry-run output should mention AGENTS.md"
+grep -q ".agents/skills/feature-design" "${DRY_RUN_LOG}" || fail "dry-run output should mention skill directories"
+
+"${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}"
+
+[[ -f "${TARGET_DIR}/AGENTS.md" ]] || fail "bootstrap should copy AGENTS.md"
+[[ -f "${TARGET_DIR}/.agents/skills/feature-design/SKILL.md" ]] || fail "bootstrap should copy skills"
+[[ -f "${TARGET_DIR}/.codex/config.example.toml" ]] || fail "bootstrap should copy the config example"
+
+echo "user-owned" > "${TARGET_DIR}/AGENTS.md"
+if "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}" > "${TMP_DIR}/overwrite.log" 2>&1; then
+  fail "bootstrap should refuse to overwrite existing files without --force"
+fi
+
+grep -q "already exists" "${TMP_DIR}/overwrite.log" || fail "overwrite refusal should explain the conflict"
+grep -q "user-owned" "${TARGET_DIR}/AGENTS.md" || fail "bootstrap should not overwrite existing files by default"
+
+echo "bootstrap_safety.sh: OK"

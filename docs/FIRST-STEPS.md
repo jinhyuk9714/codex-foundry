@@ -1,0 +1,38 @@
+# First Steps
+
+Use this checklist when you open `codex-foundry` in Codex CLI or the Codex app for the first time.
+
+## 1. Confirm the Repo Context
+
+- Open the repository root.
+- Read the root `AGENTS.md`.
+- Run `$codex-setup-check`.
+
+## 2. Pick the Right Entry Skill
+
+- Use `$feature-design` for new work.
+- Use `$systematic-debug` when something is failing or unclear.
+
+## 3. Stay on the Default Path
+
+For feature work, use this sequence:
+
+1. `$feature-design`
+2. `$implementation-plan`
+3. `$tdd-implement`
+4. `$request-code-review`
+5. `$verification-gate`
+6. `$finish-branch`
+
+## 4. Enable Optional Config Only If Needed
+
+- Review `.codex/config.example.toml`.
+- Review `.codex/mcp/README.md`.
+- Opt in to `openaiDeveloperDocs` or `context7` only when they add value for the repo.
+
+## 5. Verify Before You Trust the Kit
+
+```bash
+bash tests/validate_repo.sh
+bash tests/bootstrap_safety.sh
+```
