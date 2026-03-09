@@ -1,8 +1,13 @@
 # codex-foundry
 
-Repo-local, self-contained Codex starter kit for Codex CLI and the Codex app.
+[![Template Repository](https://img.shields.io/badge/template-repository-0ea5e9?style=flat-square)](https://github.com/jinhyuk9714/codex-foundry/generate)
+[![MIT License](https://img.shields.io/badge/license-MIT-16a34a?style=flat-square)](LICENSE)
+[![Codex](https://img.shields.io/badge/Codex-CLI%2FApp-111827?style=flat-square)](https://developers.openai.com/codex/)
+[![Repo-local](https://img.shields.io/badge/repo--local-self--contained-7c3aed?style=flat-square)](https://developers.openai.com/codex/concepts/customization/)
 
-This project takes the "pre-wired workflow" idea from Claude Forge and translates it into Codex-native building blocks: `AGENTS.md`, repo-local skills in `.agents/skills`, and opt-in `.codex` configuration examples.
+Repo-local, self-contained starter kit for Codex skills, workflows, and bootstrap setup.
+
+`codex-foundry` packages a small, opinionated Codex baseline: `AGENTS.md`, repo-local skills in `.agents/skills`, opt-in `.codex` examples, and safe bootstrap scripts for existing repositories.
 
 ## What You Get
 

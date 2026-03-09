@@ -7,6 +7,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 required_files=(
   "README.md"
   "AGENTS.md"
+  "LICENSE"
   ".gitignore"
   ".codex/config.example.toml"
   ".codex/mcp/README.md"
@@ -41,6 +42,9 @@ assert_file() {
 for file in "${required_files[@]}"; do
   assert_file "${file}"
 done
+
+grep -q "Template Repository" "${ROOT_DIR}/README.md" || fail "README missing Template Repository badge marker"
+grep -q "MIT License" "${ROOT_DIR}/README.md" || fail "README missing MIT License badge marker"
 
 for skill in "${skills[@]}"; do
   skill_file="${ROOT_DIR}/.agents/skills/${skill}/SKILL.md"
