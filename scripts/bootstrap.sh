@@ -4,13 +4,14 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: bootstrap.sh [--source PATH] [--target PATH] [--dry-run] [--force]
+Usage: bootstrap.sh [--source PATH] [--target PATH] [--profile ID] [--dry-run] [--force]
 
 Copies codex-foundry into an existing repository.
 
 Options:
   --source PATH  Source starter-kit repo. Defaults to this script's repo root.
   --target PATH  Target repository. Defaults to the current working directory.
+  --profile ID   Optional stack profile: nextjs-app-router, node-api, python-service.
   --dry-run      Print planned copies without writing files.
   --force        Overwrite existing target paths.
   -h, --help     Show this help text.
@@ -22,6 +23,18 @@ SOURCE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 TARGET_DIR="$(pwd)"
 DRY_RUN=0
 FORCE=0
+PROFILE=""
+
+is_valid_profile() {
+  case "$1" in
+    nextjs-app-router|node-api|python-service)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -31,6 +44,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --target)
       TARGET_DIR="$2"
+      shift 2
+      ;;
+    --profile)
+      PROFILE="$2"
       shift 2
       ;;
     --dry-run)
@@ -57,7 +74,13 @@ SOURCE_DIR="$(cd "${SOURCE_DIR}" && pwd)"
 mkdir -p "${TARGET_DIR}"
 TARGET_DIR="$(cd "${TARGET_DIR}" && pwd)"
 
-paths=(
+if [[ -n "${PROFILE}" ]] && ! is_valid_profile "${PROFILE}"; then
+  echo "Unknown profile: ${PROFILE}" >&2
+  echo "Allowed profiles: nextjs-app-router, node-api, python-service" >&2
+  exit 1
+fi
+
+base_paths=(
   "AGENTS.md"
   ".agents/skills/feature-design"
   ".agents/skills/implementation-plan"
@@ -78,15 +101,39 @@ paths=(
   "docs/ADVANCED-CODEX-POWER.md"
   "docs/PROMPT-PLAYBOOKS.md"
   "docs/PROMPT-PLAYBOOKS.ko.md"
+  "docs/STACK-PROFILES.md"
   "docs/SETUP-DOCTOR.md"
   "docs/FIRST-STEPS.md"
   "docs/WORKFLOWS.md"
   "docs/CUSTOMIZATION.md"
+  "profiles/nextjs-app-router/docs/STACK-PROFILE.md"
+  "profiles/nextjs-app-router/docs/STACK-PROMPT-PLAYBOOKS.md"
+  "profiles/node-api/docs/STACK-PROFILE.md"
+  "profiles/node-api/docs/STACK-PROMPT-PLAYBOOKS.md"
+  "profiles/python-service/docs/STACK-PROFILE.md"
+  "profiles/python-service/docs/STACK-PROMPT-PLAYBOOKS.md"
 )
 
-for rel in "${paths[@]}"; do
-  src="${SOURCE_DIR}/${rel}"
-  dest="${TARGET_DIR}/${rel}"
+declare -a source_paths=()
+declare -a target_paths=()
+
+add_copy() {
+  source_paths+=("$1")
+  target_paths+=("$2")
+}
+
+for rel in "${base_paths[@]}"; do
+  add_copy "${rel}" "${rel}"
+done
+
+if [[ -n "${PROFILE}" ]]; then
+  add_copy "profiles/${PROFILE}/docs/STACK-PROFILE.md" "docs/STACK-PROFILE.md"
+  add_copy "profiles/${PROFILE}/docs/STACK-PROMPT-PLAYBOOKS.md" "docs/STACK-PROMPT-PLAYBOOKS.md"
+fi
+
+for i in "${!source_paths[@]}"; do
+  src="${SOURCE_DIR}/${source_paths[$i]}"
+  dest="${TARGET_DIR}/${target_paths[$i]}"
   [[ -e "${src}" ]] || {
     echo "Source path missing: ${src}" >&2
     exit 1
@@ -101,7 +148,7 @@ done
 echo "Source: ${SOURCE_DIR}"
 echo "Target: ${TARGET_DIR}"
 echo "Planned copies:"
-for rel in "${paths[@]}"; do
+for rel in "${target_paths[@]}"; do
   echo " - ${rel}"
 done
 
@@ -110,9 +157,9 @@ if [[ "${DRY_RUN}" -eq 1 ]]; then
   exit 0
 fi
 
-for rel in "${paths[@]}"; do
-  src="${SOURCE_DIR}/${rel}"
-  dest="${TARGET_DIR}/${rel}"
+for i in "${!source_paths[@]}"; do
+  src="${SOURCE_DIR}/${source_paths[$i]}"
+  dest="${TARGET_DIR}/${target_paths[$i]}"
   mkdir -p "$(dirname "${dest}")"
   if [[ -e "${dest}" && "${FORCE}" -eq 1 ]]; then
     rm -rf "${dest}"

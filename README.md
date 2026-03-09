@@ -18,6 +18,7 @@ Repo-local, self-contained starter kit for Codex skills, workflows, and bootstra
 - `AGENTS.md` sets the repo-level rules.
 - `.agents/skills/` gives Codex repeatable workflows with stable names.
 - `.codex/` stays opt-in, so the default setup is still safe and small.
+- `profiles/` holds optional stack overlays when the repo matches a supported stack.
 - `scripts/bootstrap.sh` and `scripts/bootstrap.ps1` let you add the kit to an existing repository without overwriting files by default.
 
 ## Start Here
@@ -51,7 +52,8 @@ bash scripts/codex-doctor.sh
 ```
 
 7. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
-8. Then start work with the default path:
+8. If you want a stack-specific overlay, see [Stack Profiles](docs/STACK-PROFILES.md) and copy one profile into `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
+9. Then start work with the default path:
 
 ```text
 $feature-design
@@ -74,6 +76,12 @@ bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target .
+```
+
+If you want a stack overlay during bootstrap, add `--profile`:
+
+```bash
+bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --profile nextjs-app-router
 ```
 
 4. Open that repository in Codex and run:
@@ -129,6 +137,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - Opt-in multi-agent layer: `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
 - Executable doctor scripts: `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1`.
 - Prompt playbooks: `docs/PROMPT-PLAYBOOKS.md` for bootstrap, feature, and bugfix flows.
+- Stack profiles: `docs/STACK-PROFILES.md` plus optional injected `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
 - Safe bootstrap scripts: `scripts/bootstrap.sh` and `scripts/bootstrap.ps1`.
 
 ## Verification
@@ -144,6 +153,7 @@ bash tests/bootstrap_safety.sh
 
 - [First Steps](docs/FIRST-STEPS.md)
 - [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md)
+- [Stack Profiles](docs/STACK-PROFILES.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)

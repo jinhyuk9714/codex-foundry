@@ -14,10 +14,11 @@ Confirm that the repository is ready for Codex to work the intended way, then ro
 3. Confirm each skill has `agents/openai.yaml` metadata with at least `display_name`, `short_description`, and `default_prompt`.
 4. Confirm `.codex/config.example.toml` and `.codex/mcp/README.md` exist.
 5. Confirm `.codex/config.multi-agent.example.toml` and `.codex/agents/*.toml` are internally consistent when present.
-6. Tell the user to run `bash scripts/codex-doctor.sh` or `pwsh -File scripts/codex-doctor.ps1` for the executable diagnosis pass.
-7. After the doctor, point the user at `docs/PROMPT-PLAYBOOKS.md` or `docs/PROMPT-PLAYBOOKS.ko.md` if they want copy-paste prompts.
-8. Use the doctor output to point them at the next command, such as `/status`, `/debug-config`, or `/mcp`.
-9. Report any missing pieces with the smallest corrective action.
+6. If `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md` exist, treat them as the active stack overlay and confirm they are both present together.
+7. Tell the user to run `bash scripts/codex-doctor.sh` or `pwsh -File scripts/codex-doctor.ps1` for the executable diagnosis pass.
+8. After the doctor, point the user at `docs/PROMPT-PLAYBOOKS.md` or `docs/PROMPT-PLAYBOOKS.ko.md` for generic prompts, and at `docs/STACK-PROFILE.md` if a stack overlay is active.
+9. Use the doctor output to point them at the next command, such as `/status`, `/debug-config`, or `/mcp`.
+10. Report any missing pieces with the smallest corrective action.
 
 ## Rules
 

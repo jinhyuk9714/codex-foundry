@@ -10,12 +10,13 @@ Follow a strict red-green-refactor loop.
 ## Process
 
 1. Choose the smallest next behavior from the approved plan.
-2. Write one failing test for that behavior.
-3. Run the test and confirm the failure is the expected one.
-4. Write the minimum production change that makes the test pass.
-5. Re-run the same test, then any broader checks affected by the change.
-6. Refactor only while tests stay green.
-7. Repeat for the next behavior.
+2. If `docs/STACK-PROFILE.md` exists, use its recommended layout and verification commands for the active stack.
+3. Write one failing test for that behavior.
+4. Run the test and confirm the failure is the expected one.
+5. Write the minimum production change that makes the test pass.
+6. Re-run the same test, then any broader checks affected by the change.
+7. Refactor only while tests stay green.
+8. Repeat for the next behavior.
 
 ## Rules
 

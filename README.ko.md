@@ -18,6 +18,7 @@ Codex 스킬, 워크플로우, bootstrap 설정을 위한 repo-local, self-conta
 - `AGENTS.md`가 레포 기본 규칙을 잡습니다.
 - `.agents/skills/`가 반복 가능한 작업 흐름을 이름 있는 스킬로 제공합니다.
 - `.codex/`는 필요할 때만 켜는 선택형 설정 레이어입니다.
+- `profiles/`에는 지원하는 스택용 선택형 overlay가 들어 있습니다.
 - `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`는 기존 저장소에 기본값으로 덮어쓰기 없이 이 키트를 주입합니다.
 
 ## 바로 시작하기
@@ -51,7 +52,8 @@ bash scripts/codex-doctor.sh
 ```
 
 7. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
-8. 그다음 기본 작업 흐름으로 들어갑니다.
+8. 스택별 overlay가 필요하면 [Stack Profiles](docs/STACK-PROFILES.md)를 보고 `docs/STACK-PROFILE.md`, `docs/STACK-PROMPT-PLAYBOOKS.md`를 적용합니다.
+9. 그다음 기본 작업 흐름으로 들어갑니다.
 
 ```text
 $feature-design
@@ -74,6 +76,12 @@ bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target .
+```
+
+스택 overlay까지 같이 넣고 싶다면 `--profile`을 붙입니다.
+
+```bash
+bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --profile nextjs-app-router
 ```
 
 4. 그 저장소를 Codex에서 열고 아래를 실행합니다.
@@ -129,6 +137,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - 선택형 multi-agent 레이어: `.codex/config.multi-agent.example.toml`, `.codex/agents/`
 - 실행형 doctor 스크립트: `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`
 - Prompt Playbooks: `docs/PROMPT-PLAYBOOKS.ko.md`에서 bootstrap, feature, bugfix 예시 제공
+- Stack Profiles: `docs/STACK-PROFILES.md`와 선택형 `docs/STACK-PROFILE.md`, `docs/STACK-PROMPT-PLAYBOOKS.md`
 - 안전한 주입 스크립트: `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`
 
 ## 검증
@@ -144,6 +153,7 @@ bash tests/bootstrap_safety.sh
 
 - [First Steps](docs/FIRST-STEPS.md)
 - [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)
+- [Stack Profiles](docs/STACK-PROFILES.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)

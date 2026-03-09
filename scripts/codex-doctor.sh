@@ -162,6 +162,57 @@ check_multi_agent_example() {
   fi
 }
 
+valid_stack_profile_id() {
+  case "$1" in
+    nextjs-app-router|node-api|python-service)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+check_stack_overlay() {
+  local profile_file="${ROOT_DIR}/docs/STACK-PROFILE.md"
+  local prompt_file="${ROOT_DIR}/docs/STACK-PROMPT-PLAYBOOKS.md"
+  local issues=()
+  local profile_line=""
+  local profile_id=""
+
+  if [[ ! -f "${profile_file}" && ! -f "${prompt_file}" ]]; then
+    return
+  fi
+
+  [[ -f "${profile_file}" ]] || issues+=("docs/STACK-PROFILE.md")
+  [[ -f "${prompt_file}" ]] || issues+=("docs/STACK-PROMPT-PLAYBOOKS.md")
+
+  if [[ -f "${profile_file}" ]]; then
+    profile_line="$(grep -E '^Profile ID: ' "${profile_file}" | head -n 1 || true)"
+    if [[ -z "${profile_line}" ]]; then
+      issues+=("profile:id")
+    else
+      profile_id="${profile_line#Profile ID: }"
+      if ! valid_stack_profile_id "${profile_id}"; then
+        issues+=("profile:unknown-id")
+      fi
+    fi
+  fi
+
+  if [[ -f "${prompt_file}" ]]; then
+    contains_literal "${prompt_file}" "## Bootstrap Playbook" || issues+=("prompt:bootstrap")
+    contains_literal "${prompt_file}" "## Feature Playbook" || issues+=("prompt:feature")
+    contains_literal "${prompt_file}" "## Bugfix Playbook" || issues+=("prompt:bugfix")
+  fi
+
+  if ((${#issues[@]} == 0)); then
+    report_pass "Stack profile overlay is present: ${profile_id}."
+  else
+    report_fail "Stack profile overlay is incomplete: $(join_list "${issues[@]}")."
+    add_next_step "bash tests/profile_smoke.sh"
+  fi
+}
+
 check_project_config() {
   local config_file="${ROOT_DIR}/.codex/config.toml"
   local missing_roles=()
@@ -242,6 +293,7 @@ check_skills
 check_skill_metadata
 check_minimal_config
 check_multi_agent_example
+check_stack_overlay
 check_project_config
 check_environment
 

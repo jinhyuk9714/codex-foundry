@@ -13,6 +13,7 @@ Use this checklist when you open `codex-foundry` in Codex CLI or the Codex app f
 ## 2. Pick the Right Entry Skill
 
 - Open [Prompt Playbooks](PROMPT-PLAYBOOKS.md).
+- If the repo clearly matches Next.js App Router, a Node API, or a Python service, open [Stack Profiles](STACK-PROFILES.md) and apply one overlay first.
 - Choose `Bootstrap Playbook`, `Feature Playbook`, or `Bugfix Playbook`.
 - Paste the first block from the playbook you actually need.
 
@@ -35,6 +36,7 @@ If you want the copy-paste version of that flow, use [Prompt Playbooks](PROMPT-P
 - Review `.codex/mcp/README.md`.
 - Opt in to `openaiDeveloperDocs` or `context7` only when they add value for the repo.
 - Review `docs/ADVANCED-CODEX-POWER.md` only if you want the experimental multi-agent layer.
+- Review [Stack Profiles](STACK-PROFILES.md) if you want `--profile` bootstrap or a stack-specific overlay.
 - Use [Prompt Playbooks](PROMPT-PLAYBOOKS.md#bootstrap-playbook) if you want the shortest onboarding path.
 
 ## 5. Verify Before You Trust the Kit
@@ -43,4 +45,5 @@ If you want the copy-paste version of that flow, use [Prompt Playbooks](PROMPT-P
 bash scripts/codex-doctor.sh
 bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
+bash tests/profile_smoke.sh
 ```

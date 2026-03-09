@@ -2,13 +2,14 @@
 param(
     [string]$Source = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path,
     [string]$Target = (Get-Location).Path,
+    [string]$Profile = "",
     [switch]$DryRun,
     [switch]$Force
 )
 
 $ErrorActionPreference = "Stop"
 
-$paths = @(
+$basePaths = @(
     "AGENTS.md",
     ".agents/skills/feature-design",
     ".agents/skills/implementation-plan",
@@ -29,11 +30,38 @@ $paths = @(
     "docs/ADVANCED-CODEX-POWER.md",
     "docs/PROMPT-PLAYBOOKS.md",
     "docs/PROMPT-PLAYBOOKS.ko.md",
+    "docs/STACK-PROFILES.md",
     "docs/SETUP-DOCTOR.md",
     "docs/FIRST-STEPS.md",
     "docs/WORKFLOWS.md",
-    "docs/CUSTOMIZATION.md"
+    "docs/CUSTOMIZATION.md",
+    "profiles/nextjs-app-router/docs/STACK-PROFILE.md",
+    "profiles/nextjs-app-router/docs/STACK-PROMPT-PLAYBOOKS.md",
+    "profiles/node-api/docs/STACK-PROFILE.md",
+    "profiles/node-api/docs/STACK-PROMPT-PLAYBOOKS.md",
+    "profiles/python-service/docs/STACK-PROFILE.md",
+    "profiles/python-service/docs/STACK-PROMPT-PLAYBOOKS.md"
 )
+
+$allowedProfiles = @("nextjs-app-router", "node-api", "python-service")
+if ($Profile -and -not $allowedProfiles.Contains($Profile)) {
+    throw "Unknown profile: $Profile. Allowed profiles: nextjs-app-router, node-api, python-service"
+}
+
+$copies = New-Object System.Collections.Generic.List[object]
+foreach ($path in $basePaths) {
+    $copies.Add([PSCustomObject]@{ Source = $path; Target = $path })
+}
+if ($Profile) {
+    $copies.Add([PSCustomObject]@{
+        Source = "profiles/$Profile/docs/STACK-PROFILE.md"
+        Target = "docs/STACK-PROFILE.md"
+    })
+    $copies.Add([PSCustomObject]@{
+        Source = "profiles/$Profile/docs/STACK-PROMPT-PLAYBOOKS.md"
+        Target = "docs/STACK-PROMPT-PLAYBOOKS.md"
+    })
+}
 
 $resolvedSource = (Resolve-Path $Source).Path
 if (-not (Test-Path -LiteralPath $Target)) {
@@ -41,9 +69,9 @@ if (-not (Test-Path -LiteralPath $Target)) {
 }
 $resolvedTarget = (Resolve-Path $Target).Path
 
-foreach ($relativePath in $paths) {
-    $sourcePath = Join-Path $resolvedSource $relativePath
-    $targetPath = Join-Path $resolvedTarget $relativePath
+foreach ($copy in $copies) {
+    $sourcePath = Join-Path $resolvedSource $copy.Source
+    $targetPath = Join-Path $resolvedTarget $copy.Target
 
     if (-not (Test-Path -LiteralPath $sourcePath)) {
         throw "Source path missing: $sourcePath"
@@ -57,8 +85,8 @@ foreach ($relativePath in $paths) {
 Write-Host "Source: $resolvedSource"
 Write-Host "Target: $resolvedTarget"
 Write-Host "Planned copies:"
-foreach ($relativePath in $paths) {
-    Write-Host " - $relativePath"
+foreach ($copy in $copies) {
+    Write-Host " - $($copy.Target)"
 }
 
 if ($DryRun) {
@@ -66,9 +94,9 @@ if ($DryRun) {
     exit 0
 }
 
-foreach ($relativePath in $paths) {
-    $sourcePath = Join-Path $resolvedSource $relativePath
-    $targetPath = Join-Path $resolvedTarget $relativePath
+foreach ($copy in $copies) {
+    $sourcePath = Join-Path $resolvedSource $copy.Source
+    $targetPath = Join-Path $resolvedTarget $copy.Target
     $parentDir = Split-Path -Parent $targetPath
 
     if (-not (Test-Path -LiteralPath $parentDir)) {

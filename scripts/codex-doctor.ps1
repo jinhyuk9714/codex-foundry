@@ -62,6 +62,11 @@ function Test-FileContains {
     return Select-String -Path $Path -SimpleMatch -Pattern $Pattern -Quiet
 }
 
+function Test-ValidStackProfileId {
+    param([string]$ProfileId)
+    return @("nextjs-app-router", "node-api", "python-service").Contains($ProfileId)
+}
+
 $agentsPath = Join-Path $rootDir "AGENTS.md"
 if (Test-Path -LiteralPath $agentsPath) {
     Report-Pass "Root AGENTS.md is present."
@@ -132,6 +137,41 @@ if ($advancedIssues.Count -eq 0) {
 } else {
     Report-Fail "Advanced example files are incomplete: $(Join-Items $advancedIssues)."
     Add-NextStep "bash tests/validate_repo.sh"
+}
+
+$stackProfilePath = Join-Path $rootDir "docs/STACK-PROFILE.md"
+$stackPromptPath = Join-Path $rootDir "docs/STACK-PROMPT-PLAYBOOKS.md"
+if ((Test-Path -LiteralPath $stackProfilePath) -or (Test-Path -LiteralPath $stackPromptPath)) {
+    $stackIssues = New-Object System.Collections.Generic.List[string]
+    $profileId = ""
+
+    if (-not (Test-Path -LiteralPath $stackProfilePath)) { $stackIssues.Add("docs/STACK-PROFILE.md") }
+    if (-not (Test-Path -LiteralPath $stackPromptPath)) { $stackIssues.Add("docs/STACK-PROMPT-PLAYBOOKS.md") }
+
+    if (Test-Path -LiteralPath $stackProfilePath) {
+        $profileLine = Select-String -Path $stackProfilePath -Pattern "^Profile ID: " | Select-Object -First 1
+        if (-not $profileLine) {
+            $stackIssues.Add("profile:id")
+        } else {
+            $profileId = $profileLine.Line.Substring("Profile ID: ".Length)
+            if (-not (Test-ValidStackProfileId $profileId)) {
+                $stackIssues.Add("profile:unknown-id")
+            }
+        }
+    }
+
+    if (Test-Path -LiteralPath $stackPromptPath) {
+        if (-not (Test-FileContains $stackPromptPath "## Bootstrap Playbook")) { $stackIssues.Add("prompt:bootstrap") }
+        if (-not (Test-FileContains $stackPromptPath "## Feature Playbook")) { $stackIssues.Add("prompt:feature") }
+        if (-not (Test-FileContains $stackPromptPath "## Bugfix Playbook")) { $stackIssues.Add("prompt:bugfix") }
+    }
+
+    if ($stackIssues.Count -eq 0) {
+        Report-Pass "Stack profile overlay is present: $profileId."
+    } else {
+        Report-Fail "Stack profile overlay is incomplete: $(Join-Items $stackIssues)."
+        Add-NextStep "bash tests/profile_smoke.sh"
+    }
 }
 
 $projectConfig = Join-Path $rootDir ".codex/config.toml"

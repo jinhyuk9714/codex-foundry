@@ -2,6 +2,8 @@
 
 이 문서는 문서를 해석해서 직접 프롬프트를 만들기보다, 바로 복붙해서 시작하고 싶을 때 쓰는 플레이북입니다. 아래 블록은 한 번에 하나씩 붙여 넣고, Codex의 응답을 받은 다음 다음 블록으로 넘어가면 됩니다.
 
+이미 [Stack Profiles](STACK-PROFILES.md)에서 stack overlay를 적용했다면, 같은 흐름을 쓰되 `docs/STACK-PROFILE.md`를 함께 참고하라고 Codex에 알려주면 됩니다.
+
 ## Bootstrap Playbook
 
 템플릿으로 새 레포를 만들었거나, 기존 저장소에 `codex-foundry`를 주입한 직후에 쓰는 흐름입니다. 기능 개발이나 버그 수정보다 먼저, repo-local 설정이 제대로 들어왔는지 확인하는 것이 목적입니다.

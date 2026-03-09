@@ -2,6 +2,8 @@
 
 Use these playbooks when you want copy-paste prompts instead of translating the kit into your own wording. Paste the blocks one at a time and let Codex answer before you move to the next block.
 
+If you have already applied a stack overlay from [Stack Profiles](STACK-PROFILES.md), tell Codex to use `docs/STACK-PROFILE.md` while you follow the same flow.
+
 ## Bootstrap Playbook
 
 Use this when you just created a repo from the template or finished injecting `codex-foundry` into an existing repository. The goal is to confirm the repo-local setup before you ask Codex to build or fix anything.

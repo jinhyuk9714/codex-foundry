@@ -10,15 +10,17 @@ Do not claim success without fresh evidence.
 ## Process
 
 1. Identify the command that proves the claim.
-2. Run it now.
-3. Read the full output and exit code.
-4. Report the actual result, not the expected one.
-5. If verification fails, describe the failure and the next corrective step.
+2. If `docs/STACK-PROFILE.md` exists, prefer its stack-specific verification commands before the generic repo checks.
+3. Run it now.
+4. Read the full output and exit code.
+5. Report the actual result, not the expected one.
+6. If verification fails, describe the failure and the next corrective step.
 
 ## Default Repo Commands
 
 - `bash tests/validate_repo.sh`
 - `bash tests/bootstrap_safety.sh`
+- `bash tests/profile_smoke.sh`
 
 ## Rules
 

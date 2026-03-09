@@ -10,11 +10,12 @@ Debug with evidence, not guesses.
 ## Process
 
 1. Reproduce the failure and capture the exact symptom.
-2. Narrow the scope to the smallest failing path.
-3. Form one hypothesis at a time and test it.
-4. Confirm the root cause before changing code.
-5. Add or update a regression test before the fix.
-6. Re-run the failing path and the surrounding verification after the fix.
+2. If `docs/STACK-PROFILE.md` exists, use it to choose the right runtime path, layout, and verification command for the active stack.
+3. Narrow the scope to the smallest failing path.
+4. Form one hypothesis at a time and test it.
+5. Confirm the root cause before changing code.
+6. Add or update a regression test before the fix.
+7. Re-run the failing path and the surrounding verification after the fix.
 
 ## Rules
 
