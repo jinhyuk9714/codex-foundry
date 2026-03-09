@@ -24,6 +24,7 @@ Codex 스킬, 워크플로우, bootstrap 설정을 위한 repo-local, self-conta
   - `finish-branch`
   - `codex-setup-check`
 - `.codex/config.example.toml`, `.codex/mcp/README.md` 예시
+- `.codex/config.multi-agent.example.toml`, `.codex/agents/` 기반의 선택형 고급 설정 레이어
 - 기존 저장소에 기본값으로 덮어쓰기 없이 적용하는 bootstrap 스크립트
 
 ## 시작하기
@@ -88,6 +89,14 @@ pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\cod
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target .
 ```
 
+## 고급 Codex 기능
+
+기본 키트는 의도적으로 작게 유지됩니다. 대신 더 큰 변경이나 문서 검증이 필요한 저장소를 위해 선택 적용형 고급 레이어를 같이 제공합니다.
+
+- 최소 설정만 원하면 `.codex/config.example.toml`만 참고하면 됩니다.
+- 실험적인 `explorer`, `reviewer`, `docs_researcher` 역할을 쓰고 싶다면 `.codex/config.multi-agent.example.toml`을 `.codex/config.toml`로 복사해 사용합니다.
+- 자세한 설정과 프롬프트 예시는 [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)를 보면 됩니다.
+
 ## 기본 워크플로우
 
 | 목적 | Codex 흐름 |
@@ -118,6 +127,8 @@ pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\cod
 ├── AGENTS.md
 ├── .agents/skills/
 ├── .codex/config.example.toml
+├── .codex/config.multi-agent.example.toml
+├── .codex/agents/
 ├── .codex/mcp/README.md
 ├── docs/
 ├── scripts/bootstrap.sh
@@ -139,3 +150,4 @@ bash tests/bootstrap_safety.sh
 - [First Steps](docs/FIRST-STEPS.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
+- [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)

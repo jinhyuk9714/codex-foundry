@@ -24,6 +24,7 @@ Repo-local, self-contained starter kit for Codex skills, workflows, and bootstra
   - `finish-branch`
   - `codex-setup-check`
 - Opt-in Codex examples in `.codex/config.example.toml` and `.codex/mcp/README.md`.
+- An opt-in advanced layer for multi-agent role configs in `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
 - Bootstrap scripts for bringing the kit into an existing repository without overwriting files by default.
 
 ## Getting Started
@@ -88,6 +89,14 @@ pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\cod
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target .
 ```
 
+## Advanced Codex Power
+
+The default kit is intentionally small. If a repository benefits from role-based review or docs verification, `codex-foundry` also ships an opt-in advanced layer.
+
+- Keep `.codex/config.example.toml` when you only want a minimal repo-local baseline.
+- Copy `.codex/config.multi-agent.example.toml` to `.codex/config.toml` when you want the experimental `explorer`, `reviewer`, and `docs_researcher` roles.
+- See [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md) for setup notes and prompt examples.
+
 ## Default Workflow
 
 | Goal | Codex-native flow |
@@ -118,6 +127,8 @@ This kit does not try to recreate slash commands. Instead, it maps the same inte
 ├── AGENTS.md
 ├── .agents/skills/
 ├── .codex/config.example.toml
+├── .codex/config.multi-agent.example.toml
+├── .codex/agents/
 ├── .codex/mcp/README.md
 ├── docs/
 ├── scripts/bootstrap.sh
@@ -139,3 +150,4 @@ bash tests/bootstrap_safety.sh
 - [First Steps](docs/FIRST-STEPS.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
+- [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)

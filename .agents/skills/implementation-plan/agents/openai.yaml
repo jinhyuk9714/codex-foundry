@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implementation Plan"
+  short_description: "Convert an approved design into a decision-complete implementation plan."
+  default_prompt: "Convert the approved design into a concise implementation plan with exact file paths, public interfaces, grouped changes, tests, and assumptions. Do not mix implementation into the plan."

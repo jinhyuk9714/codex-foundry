@@ -29,6 +29,7 @@ For feature work, use this sequence:
 - Review `.codex/config.example.toml`.
 - Review `.codex/mcp/README.md`.
 - Opt in to `openaiDeveloperDocs` or `context7` only when they add value for the repo.
+- Review `docs/ADVANCED-CODEX-POWER.md` only if you want the experimental multi-agent layer.
 
 ## 5. Verify Before You Trust the Kit
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Setup Check"
+  short_description: "Confirm that repo-local Codex guidance, skills, and optional config files are in place."
+  default_prompt: "Check whether this repository has the expected repo-local Codex setup. Confirm the required AGENTS.md, skills, optional config examples, and verification commands. If something is missing, report the smallest corrective action."

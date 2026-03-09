@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verification Gate"
+  short_description: "Run the exact commands that prove the current state before any completion claim."
+  default_prompt: "Identify the commands that prove the current state, run them now, read the full output, and report the actual result without using expected-state language."

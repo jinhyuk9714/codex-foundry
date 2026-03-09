@@ -22,12 +22,18 @@ mkdir -p "${TARGET_DIR}"
 [[ ! -e "${TARGET_DIR}/AGENTS.md" ]] || fail "dry-run should not create files"
 grep -q "AGENTS.md" "${DRY_RUN_LOG}" || fail "dry-run output should mention AGENTS.md"
 grep -q ".agents/skills/feature-design" "${DRY_RUN_LOG}" || fail "dry-run output should mention skill directories"
+grep -q ".codex/config.multi-agent.example.toml" "${DRY_RUN_LOG}" || fail "dry-run output should mention advanced config"
+grep -q ".codex/agents/reviewer.toml" "${DRY_RUN_LOG}" || fail "dry-run output should mention advanced agent configs"
+grep -q "docs/ADVANCED-CODEX-POWER.md" "${DRY_RUN_LOG}" || fail "dry-run output should mention advanced docs"
 
 "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}"
 
 [[ -f "${TARGET_DIR}/AGENTS.md" ]] || fail "bootstrap should copy AGENTS.md"
 [[ -f "${TARGET_DIR}/.agents/skills/feature-design/SKILL.md" ]] || fail "bootstrap should copy skills"
 [[ -f "${TARGET_DIR}/.codex/config.example.toml" ]] || fail "bootstrap should copy the config example"
+[[ -f "${TARGET_DIR}/.codex/config.multi-agent.example.toml" ]] || fail "bootstrap should copy the multi-agent config example"
+[[ -f "${TARGET_DIR}/.codex/agents/reviewer.toml" ]] || fail "bootstrap should copy advanced agent configs"
+[[ -f "${TARGET_DIR}/docs/ADVANCED-CODEX-POWER.md" ]] || fail "bootstrap should copy the advanced docs"
 
 echo "user-owned" > "${TARGET_DIR}/AGENTS.md"
 if "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${TARGET_DIR}" > "${TMP_DIR}/overwrite.log" 2>&1; then

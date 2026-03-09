@@ -47,8 +47,24 @@ It confirms:
 - the root `AGENTS.md` exists,
 - all eight repo-local skills are present,
 - `.codex/config.example.toml` exists,
+- skill metadata exists under `.agents/skills/*/agents/openai.yaml`,
 - `.codex/mcp/README.md` documents the optional MCP setup,
+- any opt-in `.codex/config.multi-agent.example.toml` references valid role configs,
 - the repo verification commands are clear.
+
+## Advanced Review Flow
+
+When a change is large enough to benefit from role splitting, opt into the advanced layer and ask Codex to coordinate:
+
+1. `codex-setup-check`
+2. `request-code-review`
+3. `verification-gate`
+
+Recommended role split:
+
+- `explorer` maps the affected paths and gathers evidence
+- `reviewer` finds correctness, regression, and security risks
+- `docs_researcher` verifies API behavior with the docs MCP server
 
 ## Skill Catalog
 

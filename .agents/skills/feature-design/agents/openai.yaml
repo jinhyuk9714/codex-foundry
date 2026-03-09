@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Design"
+  short_description: "Turn a rough request into an approved design before implementation starts."
+  default_prompt: "Turn the current request into a compact feature design with scope, success criteria, constraints, tradeoffs, risks, and a test strategy. Stop before implementation and ask for approval."

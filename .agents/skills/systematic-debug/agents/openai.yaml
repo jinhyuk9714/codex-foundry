@@ -1,0 +1,4 @@
+interface:
+  display_name: "Systematic Debug"
+  short_description: "Reproduce a failure, narrow the scope, confirm the root cause, and verify the fix."
+  default_prompt: "Debug the current problem with evidence. Reproduce the symptom first, narrow the failing path, test one hypothesis at a time, confirm the root cause, add a regression test, and only then propose or apply the fix."

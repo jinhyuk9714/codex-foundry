@@ -47,6 +47,19 @@ Use it when you want to:
 
 Do not assume that every contributor wants repo-local `.codex/config.toml`. Keep the example file as the stable template.
 
+## Advanced Codex Power
+
+The role-based multi-agent layer is intentionally separate from the minimal config.
+
+Use the advanced files only when the repository benefits from Codex-native role specialization:
+
+- `.codex/config.multi-agent.example.toml`
+- `.codex/agents/explorer.toml`
+- `.codex/agents/reviewer.toml`
+- `.codex/agents/docs-researcher.toml`
+
+Keep this layer opt-in. Do not replace the minimal example with the advanced one by default.
+
 ## Existing Repo Bootstrap
 
 Use `scripts/bootstrap.sh` or `scripts/bootstrap.ps1` when you want to inject `codex-foundry` into an existing repository.
@@ -62,6 +75,7 @@ By default the scripts:
 When you add or rename a workflow:
 
 1. Update the relevant `SKILL.md`.
+2. Update any matching `agents/openai.yaml` metadata.
 2. Update `README.md`.
 3. Update `docs/WORKFLOWS.md`.
 4. Update any bootstrap path lists and tests.

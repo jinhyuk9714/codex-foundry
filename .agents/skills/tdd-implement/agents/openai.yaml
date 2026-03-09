@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD Implement"
+  short_description: "Execute the next approved change with a strict red-green-refactor loop."
+  default_prompt: "Pick the smallest next behavior from the approved plan, write the failing validation first, confirm the red state, make the minimum change to pass, and rerun the relevant checks before moving on."

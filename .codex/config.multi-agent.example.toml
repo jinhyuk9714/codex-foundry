@@ -1,0 +1,24 @@
+# Copy this file to `.codex/config.toml` when you want the optional
+# multi-agent layer for this repository.
+
+personality = "pragmatic"
+model_reasoning_effort = "high"
+web_search = "live"
+
+features.multi_agent = true
+
+[agents]
+max_threads = 6
+max_depth = 1
+
+[agents.explorer]
+description = "Read-only codebase explorer for gathering evidence before changes are proposed."
+config_file = "agents/explorer.toml"
+
+[agents.reviewer]
+description = "PR reviewer focused on correctness, security, and missing tests."
+config_file = "agents/reviewer.toml"
+
+[agents.docs_researcher]
+description = "Documentation specialist that uses the docs MCP server to verify APIs and framework behavior."
+config_file = "agents/docs-researcher.toml"

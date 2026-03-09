@@ -1,0 +1,4 @@
+interface:
+  display_name: "Request Code Review"
+  short_description: "Review a meaningful change for bugs, regressions, weak assumptions, and missing tests."
+  default_prompt: "Review the current change with a bug-finding mindset. Read the plan or requirements, inspect the changed files and verification evidence, then report findings ordered by severity before any summary."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Finish Branch"
+  short_description: "Wrap up verified work with a short summary, remaining risks, and the next integration step."
+  default_prompt: "Summarize the verified change in user-facing terms, call out remaining risks or TODOs, and recommend the next integration step such as another iteration, a local commit, or PR prep."
