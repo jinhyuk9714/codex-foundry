@@ -8,29 +8,30 @@
 
 English | [한국어](README.ko.md)
 
+[Quick Start](#start-here) • [Workflow](#default-workflow) • [Docs](#docs) • [Upgrade](docs/UPGRADING.md)
+
 Template note: this CI badge belongs to the upstream template repo. Replace or remove it after you use this template in your own repository.
 
 Repo-local, self-contained starter kit for Codex skills, workflows, and bootstrap setup.
 
-`codex-foundry` is a GitHub template for people who want Codex to behave the same way in every repository. It keeps the important parts local: a focused `AGENTS.md`, eight named skills, opt-in `.codex` examples, and bootstrap scripts for existing codebases.
+`codex-foundry` is a GitHub template for people who want Codex to behave the same way in every repository. It keeps the important parts local: a focused `AGENTS.md`, eight stable skills, opt-in `.codex` examples, and safe bootstrap scripts for existing codebases.
 
 ## What It Is
 
-`codex-foundry` is not an app you run. It is the starting layer you copy into a repo so Codex sees the same instructions, skills, and optional config every time.
+`codex-foundry` is not an app you run. It is the repo-local layer you copy into a project so Codex sees the same rules, skills, and setup flow every time.
 
 - `AGENTS.md` sets the repo-level rules.
 - `.agents/skills/` gives Codex repeatable workflows with stable names.
-- `.codex/` stays opt-in, so the default setup is still safe and small.
-- `profiles/` holds optional stack overlays when the repo matches a supported stack.
-- `scripts/bootstrap.sh` and `scripts/bootstrap.ps1` let you add the kit to an existing repository without overwriting files by default.
+- `.codex/` and `profiles/` stay opt-in, so the default setup stays small.
+- `scripts/bootstrap.sh` and `scripts/bootstrap.ps1` inject the kit into an existing repo without overwriting files by default.
 
 ## Start Here
 
-There are two supported ways to use `codex-foundry`.
+Choose one path.
 
 ### Start a New Project
 
-Use the template when `codex-foundry` is the base of a brand new repository.
+Use this when `codex-foundry` is the base of a brand new repository.
 
 1. Open [codex-foundry](https://github.com/jinhyuk9714/codex-foundry).
 2. Click `Use this template`.
@@ -54,10 +55,9 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
-7. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
-8. If you want a stack-specific overlay, see [Stack Profiles](docs/STACK-PROFILES.md) and copy one profile into `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
-9. If this repo already has an older `codex-foundry` install, use [Upgrading](docs/UPGRADING.md) instead of re-running bootstrap.
-10. Then start work with the default path:
+Need prompts fast? Open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md). Need a stack overlay? Open [Stack Profiles](docs/STACK-PROFILES.md). Updating an older install? Use [Upgrading](docs/UPGRADING.md).
+
+Then start with the default path:
 
 ```text
 $feature-design
@@ -67,41 +67,37 @@ $tdd-implement
 
 ### Add It to an Existing Repository
 
-Use the bootstrap script when you already have a repository and want to inject the kit into it.
+Use this when you already have a repository and want to inject the kit into it.
 
-1. Keep `codex-foundry` somewhere on your machine.
-2. From the existing repository, preview the copy first:
+Preview the copy first:
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --dry-run
 ```
 
-3. Apply it when the preview looks right:
+Apply it when the preview looks right:
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target .
 ```
 
-If you want a stack overlay during bootstrap, add `--profile`:
+Need a stack overlay at bootstrap time? Add `--profile`:
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --profile nextjs-app-router
 ```
 
-4. Open that repository in Codex and run:
+Then run:
 
 ```text
 $codex-setup-check
 ```
 
-5. Then run:
-
 ```bash
 bash scripts/codex-doctor.sh
 ```
 
-6. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
-7. If this repository already has `codex-foundry`, use [Upgrading](docs/UPGRADING.md) for safe manifest-aware updates instead of re-running bootstrap.
+Need prompts fast? Open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md). If this repo already contains `codex-foundry`, use [Upgrading](docs/UPGRADING.md) instead of running bootstrap again.
 
 PowerShell works too:
 
@@ -113,7 +109,7 @@ pwsh -File scripts\codex-doctor.ps1
 
 ## Default Workflow
 
-For copy-paste prompt versions of these flows, use [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
+For copy-paste versions of these flows, use [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md). If a stack overlay is active, read `docs/STACK-PROFILE.md` before planning.
 
 - New feature: `feature-design` -> `implementation-plan` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
 - Bug fix: `systematic-debug` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
@@ -136,29 +132,14 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 
 ## What's Included
 
-- `AGENTS.md`: short repo-level rules for Codex.
+- `AGENTS.md` for repo-level Codex rules.
 - Eight repo-local skills: `feature-design`, `implementation-plan`, `tdd-implement`, `systematic-debug`, `request-code-review`, `verification-gate`, `finish-branch`, `codex-setup-check`.
-- Minimal `.codex` examples: `.codex/config.example.toml` and `.codex/mcp/README.md`.
-- Opt-in multi-agent layer: `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
-- Executable doctor scripts: `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1`.
-- Safe upgrade path: `scripts/upgrade.sh`, `scripts/upgrade.ps1`, and `.codex-foundry/manifest.toml`.
-- Release metadata and prep: `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, and `docs/RELEASING.md`.
-- Prompt playbooks: `docs/PROMPT-PLAYBOOKS.md` for bootstrap, feature, and bugfix flows.
-- Stack profiles: `docs/STACK-PROFILES.md` plus optional injected `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
-- Safe bootstrap scripts: `scripts/bootstrap.sh` and `scripts/bootstrap.ps1`.
-
-## Verification
-
-Run the repo checks before claiming the kit is ready:
-
-```bash
-bash tests/validate_repo.sh
-bash tests/bootstrap_safety.sh
-bash tests/profile_smoke.sh
-bash tests/doctor_smoke.sh
-bash tests/release_smoke.sh
-bash tests/upgrade_smoke.sh
-```
+- Minimal `.codex` examples plus an opt-in multi-agent layer.
+- `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1` for executable setup diagnosis.
+- `scripts/upgrade.sh`, `scripts/upgrade.ps1`, and `.codex-foundry/manifest.toml` for safe updates.
+- `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, and [Releasing](docs/RELEASING.md) for release discipline.
+- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md) and [Stack Profiles](docs/STACK-PROFILES.md) for faster onboarding.
+- `scripts/bootstrap.sh` and `scripts/bootstrap.ps1` for safe injection into existing repos.
 
 ## Docs
 

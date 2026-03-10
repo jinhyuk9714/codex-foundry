@@ -8,29 +8,30 @@
 
 [English](README.md) | 한국어
 
+[바로 시작하기](#바로-시작하기) • [워크플로우](#기본-워크플로우) • [문서](#문서) • [업그레이드](docs/UPGRADING.md)
+
 Template note: 이 CI 배지는 upstream 템플릿 레포용입니다. 이 템플릿으로 만든 하위 레포에서는 교체하거나 제거하세요.
 
 Codex 스킬, 워크플로우, bootstrap 설정을 위한 repo-local, self-contained 스타터킷입니다.
 
-`codex-foundry`는 Codex가 레포마다 비슷한 방식으로 일하도록 맞춰 주는 GitHub 템플릿입니다. 핵심은 전부 레포 안에 둡니다. 짧은 `AGENTS.md`, 이름이 고정된 스킬 8개, 선택 적용용 `.codex` 예시, 그리고 기존 코드베이스에 안전하게 넣을 수 있는 bootstrap 스크립트가 그 구성입니다.
+`codex-foundry`는 Codex가 레포마다 같은 방식으로 일하도록 맞춰 주는 GitHub 템플릿입니다. 핵심은 전부 레포 안에 둡니다. 짧은 `AGENTS.md`, 이름이 고정된 스킬 8개, 선택 적용용 `.codex` 예시, 그리고 기존 코드베이스에 안전하게 넣을 수 있는 bootstrap 스크립트가 그 구성입니다.
 
 ## 이 프로젝트는 무엇인가
 
-`codex-foundry`는 실행하는 앱이 아닙니다. Codex가 매번 같은 규칙과 같은 작업 흐름을 보도록 레포에 깔아 두는 시작 레이어입니다.
+`codex-foundry`는 실행하는 앱이 아닙니다. Codex가 매번 같은 규칙, 같은 스킬, 같은 setup 흐름을 보도록 레포에 깔아 두는 시작 레이어입니다.
 
 - `AGENTS.md`가 레포 기본 규칙을 잡습니다.
 - `.agents/skills/`가 반복 가능한 작업 흐름을 이름 있는 스킬로 제공합니다.
-- `.codex/`는 필요할 때만 켜는 선택형 설정 레이어입니다.
-- `profiles/`에는 지원하는 스택용 선택형 overlay가 들어 있습니다.
+- `.codex/`와 `profiles/`는 필요할 때만 켜는 선택형 레이어입니다.
 - `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`는 기존 저장소에 기본값으로 덮어쓰기 없이 이 키트를 주입합니다.
 
 ## 바로 시작하기
 
-`codex-foundry`를 쓰는 경로는 두 가지입니다.
+둘 중 하나를 고르면 됩니다.
 
 ### 새 프로젝트로 시작
 
-새 저장소의 베이스로 쓸 때는 템플릿 경로가 가장 깔끔합니다.
+새 저장소의 베이스로 쓸 때 가장 깔끔한 경로입니다.
 
 1. [codex-foundry](https://github.com/jinhyuk9714/codex-foundry)를 엽니다.
 2. `Use this template` 버튼으로 새 저장소를 만듭니다.
@@ -54,10 +55,9 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
-7. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
-8. 스택별 overlay가 필요하면 [Stack Profiles](docs/STACK-PROFILES.md)를 보고 `docs/STACK-PROFILE.md`, `docs/STACK-PROMPT-PLAYBOOKS.md`를 적용합니다.
-9. 이미 예전 `codex-foundry`가 들어 있는 저장소라면 bootstrap을 다시 돌리지 말고 [Upgrading](docs/UPGRADING.md)으로 안전하게 업데이트합니다.
-10. 그다음 기본 작업 흐름으로 들어갑니다.
+복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 열고, 스택별 overlay가 필요하면 [Stack Profiles](docs/STACK-PROFILES.md)를 봅니다. 이미 예전 `codex-foundry`가 들어 있는 저장소라면 bootstrap을 다시 돌리지 말고 [Upgrading](docs/UPGRADING.md)을 사용합니다.
+
+그다음 기본 작업 흐름으로 들어갑니다.
 
 ```text
 $feature-design
@@ -69,14 +69,13 @@ $tdd-implement
 
 이미 있는 저장소에 넣고 싶다면 bootstrap 스크립트를 쓰면 됩니다.
 
-1. 로컬 어딘가에 `codex-foundry`를 받아 둡니다.
-2. 기존 저장소에서 먼저 dry-run으로 확인합니다.
+먼저 dry-run으로 확인합니다.
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --dry-run
 ```
 
-3. 괜찮으면 실제로 적용합니다.
+괜찮으면 실제로 적용합니다.
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target .
@@ -88,20 +87,17 @@ bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --profile nextjs-app-router
 ```
 
-4. 그 저장소를 Codex에서 열고 아래를 실행합니다.
+그다음 아래를 실행합니다.
 
 ```text
 $codex-setup-check
 ```
 
-5. 이어서 아래를 실행합니다.
-
 ```bash
 bash scripts/codex-doctor.sh
 ```
 
-6. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
-7. 이미 `codex-foundry`가 들어 있는 저장소를 갱신하려면 bootstrap 대신 [Upgrading](docs/UPGRADING.md)을 사용합니다.
+복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 열고, 이미 `codex-foundry`가 들어 있는 저장소를 갱신하려면 bootstrap 대신 [Upgrading](docs/UPGRADING.md)을 사용합니다.
 
 PowerShell도 지원합니다.
 
@@ -113,7 +109,7 @@ pwsh -File scripts\codex-doctor.ps1
 
 ## 기본 워크플로우
 
-이 흐름을 그대로 복붙해서 쓰고 싶다면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 보면 됩니다.
+이 흐름을 그대로 복붙해서 쓰고 싶다면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 보면 됩니다. 스택 overlay가 활성화돼 있다면 계획 전에 `docs/STACK-PROFILE.md`를 먼저 읽으면 됩니다.
 
 - 새 기능: `feature-design` -> `implementation-plan` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
 - 버그 수정: `systematic-debug` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
@@ -136,29 +132,14 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 
 ## 포함 내용
 
-- `AGENTS.md`: Codex가 계속 참고할 레포 기본 규칙
+- `AGENTS.md`로 레포 기본 규칙을 고정합니다.
 - 8개 repo-local 스킬: `feature-design`, `implementation-plan`, `tdd-implement`, `systematic-debug`, `request-code-review`, `verification-gate`, `finish-branch`, `codex-setup-check`
-- 최소 `.codex` 예시: `.codex/config.example.toml`, `.codex/mcp/README.md`
-- 선택형 multi-agent 레이어: `.codex/config.multi-agent.example.toml`, `.codex/agents/`
-- 실행형 doctor 스크립트: `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`
-- 안전한 업그레이드 경로: `scripts/upgrade.sh`, `scripts/upgrade.ps1`, `.codex-foundry/manifest.toml`
-- 릴리스 메타데이터와 준비 경로: `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, `docs/RELEASING.md`
-- Prompt Playbooks: `docs/PROMPT-PLAYBOOKS.ko.md`에서 bootstrap, feature, bugfix 예시 제공
-- Stack Profiles: `docs/STACK-PROFILES.md`와 선택형 `docs/STACK-PROFILE.md`, `docs/STACK-PROMPT-PLAYBOOKS.md`
-- 안전한 주입 스크립트: `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`
-
-## 검증
-
-준비 상태를 확인하려면 아래 명령을 실행합니다.
-
-```bash
-bash tests/validate_repo.sh
-bash tests/bootstrap_safety.sh
-bash tests/profile_smoke.sh
-bash tests/doctor_smoke.sh
-bash tests/release_smoke.sh
-bash tests/upgrade_smoke.sh
-```
+- 최소 `.codex` 예시와 선택형 multi-agent 레이어를 함께 제공합니다.
+- `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`로 setup을 실제로 진단합니다.
+- `scripts/upgrade.sh`, `scripts/upgrade.ps1`, `.codex-foundry/manifest.toml`로 안전하게 업데이트합니다.
+- `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, [Releasing](docs/RELEASING.md)로 릴리스 규율을 유지합니다.
+- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)와 [Stack Profiles](docs/STACK-PROFILES.md)로 빠르게 시작합니다.
+- `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`로 기존 저장소에 안전하게 주입합니다.
 
 ## 문서
 
