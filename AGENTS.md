@@ -20,4 +20,5 @@
 - Run `bash tests/bootstrap_safety.sh`.
 - Run `bash tests/profile_smoke.sh`.
 - Run `bash tests/doctor_smoke.sh`.
+- Run `bash tests/release_smoke.sh`.
 - Run `bash tests/upgrade_smoke.sh`.

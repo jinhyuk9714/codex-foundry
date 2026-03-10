@@ -10,6 +10,15 @@ Shell:
 bash scripts/upgrade.sh --source /path/to/codex-foundry --target .
 ```
 
+Tagged source checkout example:
+
+```bash
+git clone https://github.com/jinhyuk9714/codex-foundry.git
+cd codex-foundry
+git checkout v0.8.0
+bash scripts/upgrade.sh --source "$PWD" --target /path/to/your-repo
+```
+
 PowerShell:
 
 ```powershell

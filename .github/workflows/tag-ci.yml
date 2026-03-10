@@ -1,13 +1,9 @@
-name: repo-ci
+name: tag-ci
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    tags:
+      - "v*"
 
 permissions:
   contents: read

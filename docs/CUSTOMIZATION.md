@@ -79,6 +79,7 @@ If you create a new repository from this template:
 - Keep your repository's real verification commands aligned with the workflow steps instead of leaving the upstream defaults in place.
 - Keep `.codex-foundry/manifest.toml` in version control so future upgrades can detect local edits safely.
 - Use [UPGRADING.md](UPGRADING.md) when you want to move to a newer `codex-foundry` source without overwriting user changes.
+- If you want a stable upstream source, checkout a tagged release first with `git checkout v0.8.0` or the current release tag.
 
 ## Upgrading Existing Repos
 

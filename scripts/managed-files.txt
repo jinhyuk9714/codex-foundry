@@ -2,8 +2,11 @@ README.md
 README.ko.md
 AGENTS.md
 LICENSE
+VERSION
+CHANGELOG.md
 .gitignore
 .github/workflows/repo-ci.yml
+.github/workflows/tag-ci.yml
 .agents/skills/feature-design/SKILL.md
 .agents/skills/feature-design/agents/openai.yaml
 .agents/skills/implementation-plan/SKILL.md
@@ -37,6 +40,7 @@ docs/FIRST-STEPS.md
 docs/WORKFLOWS.md
 docs/CUSTOMIZATION.md
 docs/UPGRADING.md
+docs/RELEASING.md
 profiles/nextjs-app-router/docs/STACK-PROFILE.md
 profiles/nextjs-app-router/docs/STACK-PROMPT-PLAYBOOKS.md
 profiles/node-api/docs/STACK-PROFILE.md
@@ -47,6 +51,8 @@ scripts/bootstrap.sh
 scripts/bootstrap.ps1
 scripts/codex-doctor.sh
 scripts/codex-doctor.ps1
+scripts/prepare-release.sh
+scripts/prepare-release.ps1
 scripts/upgrade.sh
 scripts/upgrade.ps1
 scripts/managed-files.txt
@@ -56,4 +62,5 @@ tests/validate_repo.sh
 tests/bootstrap_safety.sh
 tests/profile_smoke.sh
 tests/doctor_smoke.sh
+tests/release_smoke.sh
 tests/upgrade_smoke.sh

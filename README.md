@@ -142,6 +142,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - Opt-in multi-agent layer: `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
 - Executable doctor scripts: `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1`.
 - Safe upgrade path: `scripts/upgrade.sh`, `scripts/upgrade.ps1`, and `.codex-foundry/manifest.toml`.
+- Release metadata and prep: `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, and `docs/RELEASING.md`.
 - Prompt playbooks: `docs/PROMPT-PLAYBOOKS.md` for bootstrap, feature, and bugfix flows.
 - Stack profiles: `docs/STACK-PROFILES.md` plus optional injected `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
 - Safe bootstrap scripts: `scripts/bootstrap.sh` and `scripts/bootstrap.ps1`.
@@ -155,6 +156,7 @@ bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
 bash tests/profile_smoke.sh
 bash tests/doctor_smoke.sh
+bash tests/release_smoke.sh
 bash tests/upgrade_smoke.sh
 ```
 
@@ -166,5 +168,6 @@ bash tests/upgrade_smoke.sh
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
 - [Upgrading](docs/UPGRADING.md)
+- [Releasing](docs/RELEASING.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)
 - [Setup Doctor](docs/SETUP-DOCTOR.md)
