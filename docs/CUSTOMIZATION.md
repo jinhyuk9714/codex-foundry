@@ -74,7 +74,7 @@ By default the scripts:
 
 If you create a new repository from this template:
 
-- Replace or remove the upstream CI badge in `README.md` and `README.ko.md`.
+- Replace or remove the upstream CI badge in `README.md` and `README.en.md`.
 - Copy or adapt `.github/workflows/repo-ci.yml` only if you want the same verification gate in your own repository.
 - Keep your repository's real verification commands aligned with the workflow steps instead of leaving the upstream defaults in place.
 - Keep `.codex-foundry/manifest.toml` in version control so future upgrades can detect local edits safely.
@@ -95,6 +95,6 @@ When you add or rename a workflow:
 
 1. Update the relevant `SKILL.md`.
 2. Update any matching `agents/openai.yaml` metadata.
-2. Update `README.md`.
+2. Update `README.md` and `README.en.md` if you keep the English companion document.
 3. Update `docs/WORKFLOWS.md`.
 4. Update any bootstrap path lists and tests.

@@ -5,11 +5,11 @@ active_profile = ""
 
 [[files]]
 path = "README.md"
-sha256 = "48a87fd56d021834c81d05490aea4761efc92b02d55ed1d6243b44aec06bdc1f"
+sha256 = "e0e0abecb736497ee1780e6cae02325cd67b65a13557bafeabe30f9ee4c775b5"
 
 [[files]]
-path = "README.ko.md"
-sha256 = "55550fbd16e9a2220fba74ab1acadd0674aa2904a66126a5cea1d44441ec2898"
+path = "README.en.md"
+sha256 = "1ea9d1b00c9527b8040b664cebd775b88b1002d192bf3430a81ae9d221eaa762"
 
 [[files]]
 path = "AGENTS.md"
@@ -157,7 +157,7 @@ sha256 = "8ff81bf4332e3277375087010504de3f3034d1e7209dc6d21bf98220d01f541d"
 
 [[files]]
 path = "docs/CUSTOMIZATION.md"
-sha256 = "e0324243a1a1b0c73a4a80d7287999f1d61f17643d4e8c8c6e1b5f2122c11cf9"
+sha256 = "8d37a73730af1328147eb689a8d8d175cb531c98d79d9a9e161677347136e6c1"
 
 [[files]]
 path = "docs/UPGRADING.md"
@@ -225,7 +225,7 @@ sha256 = "62fa9d128b1d2595fcd874fdce5e9dc40b75dc8ca6618212f2b67dea0f287052"
 
 [[files]]
 path = "scripts/managed-files.txt"
-sha256 = "3be849c6f8833e13935d3d4a0d0d2b32a37cfd0b7e6bd9dc429559501b0e33f3"
+sha256 = "2168070ba759fa58f9a47972a7e9f8402a87f19fae9f5a3dc2e52ec795ba4cfc"
 
 [[files]]
 path = "scripts/bootstrap-files.txt"
@@ -237,7 +237,7 @@ sha256 = "bdd1a5dbae7007da014e3b99306cbb5325882a16f67b89c7000773bb56240a74"
 
 [[files]]
 path = "tests/validate_repo.sh"
-sha256 = "1ac1d66e7b72c0e75398fd4b056e3c8220db6142da45f36a60f73ee0ef56c44a"
+sha256 = "7e24c6214314d958372eb8f870482a8e0834190be030184391f452ee98e36a35"
 
 [[files]]
 path = "tests/bootstrap_safety.sh"

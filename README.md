@@ -6,58 +6,58 @@
 [![Repo-local](https://img.shields.io/badge/repo--local-self--contained-7c3aed?style=flat-square)](https://developers.openai.com/codex/concepts/customization/)
 [![repo-ci](https://github.com/jinhyuk9714/codex-foundry/actions/workflows/repo-ci.yml/badge.svg)](https://github.com/jinhyuk9714/codex-foundry/actions/workflows/repo-ci.yml)
 
-English | [한국어](README.ko.md)
+한국어 | [English](README.en.md)
 
-[Quick Start](#start-here) • [Workflow](#default-workflow) • [Docs](#docs) • [Upgrade](docs/UPGRADING.md)
+[바로 시작하기](#바로-시작하기) • [워크플로우](#기본-워크플로우) • [문서](#문서) • [업그레이드](docs/UPGRADING.md)
 
-Template note: this CI badge belongs to the upstream template repo. Replace or remove it after you use this template in your own repository.
+템플릿 안내: 이 CI 배지는 upstream 템플릿 레포용입니다. 이 템플릿으로 만든 하위 레포에서는 교체하거나 제거하세요.
 
-Repo-local, self-contained starter kit for Codex skills, workflows, and bootstrap setup.
+Codex 스킬, 워크플로우, bootstrap 설정을 위한 repo-local, self-contained 스타터킷입니다.
 
-`codex-foundry` is a GitHub template for people who want Codex to behave the same way in every repository. It keeps the important parts local: a focused `AGENTS.md`, eight stable skills, opt-in `.codex` examples, and safe bootstrap scripts for existing codebases.
+`codex-foundry`는 Codex가 레포마다 같은 방식으로 일하도록 맞춰 주는 GitHub 템플릿입니다. 핵심은 전부 레포 안에 둡니다. 짧은 `AGENTS.md`, 이름이 고정된 스킬 8개, 선택 적용용 `.codex` 예시, 그리고 기존 코드베이스에 안전하게 넣을 수 있는 bootstrap 스크립트가 그 구성입니다.
 
-## What It Is
+## 이 프로젝트는 무엇인가
 
-`codex-foundry` is not an app you run. It is the repo-local layer you copy into a project so Codex sees the same rules, skills, and setup flow every time.
+`codex-foundry`는 실행하는 앱이 아닙니다. Codex가 매번 같은 규칙, 같은 스킬, 같은 setup 흐름을 보도록 레포에 깔아 두는 시작 레이어입니다.
 
-- `AGENTS.md` sets the repo-level rules.
-- `.agents/skills/` gives Codex repeatable workflows with stable names.
-- `.codex/` and `profiles/` stay opt-in, so the default setup stays small.
-- `scripts/bootstrap.sh` and `scripts/bootstrap.ps1` inject the kit into an existing repo without overwriting files by default.
+- `AGENTS.md`가 레포 기본 규칙을 잡습니다.
+- `.agents/skills/`가 반복 가능한 작업 흐름을 이름 있는 스킬로 제공합니다.
+- `.codex/`와 `profiles/`는 필요할 때만 켜는 선택형 레이어입니다.
+- `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`는 기존 저장소에 기본값으로 덮어쓰기 없이 이 키트를 주입합니다.
 
-## Start Here
+## 바로 시작하기
 
-Choose one path.
+둘 중 하나를 고르면 됩니다.
 
-### Start a New Project
+### 새 프로젝트로 시작
 
-Use this when `codex-foundry` is the base of a brand new repository.
+새 저장소의 베이스로 쓸 때 가장 깔끔한 경로입니다.
 
-1. Open [codex-foundry](https://github.com/jinhyuk9714/codex-foundry).
-2. Click `Use this template`.
-3. Create your repository, then clone it.
+1. [codex-foundry](https://github.com/jinhyuk9714/codex-foundry)를 엽니다.
+2. `Use this template` 버튼으로 새 저장소를 만듭니다.
+3. 만든 저장소를 클론합니다.
 
 ```bash
-git clone <your-new-repo-url>
-cd <your-new-repo-name>
+git clone <새-레포-주소>
+cd <새-레포-이름>
 ```
 
-4. Open the repo in Codex CLI or the Codex app.
-5. Run the first repo check:
+4. Codex CLI 또는 Codex 앱에서 엽니다.
+5. 첫 점검으로 아래를 실행합니다.
 
 ```text
 $codex-setup-check
 ```
 
-6. Run the executable setup diagnosis:
+6. 이어서 실제 setup 진단을 실행합니다.
 
 ```bash
 bash scripts/codex-doctor.sh
 ```
 
-Need prompts fast? Open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md). Need a stack overlay? Open [Stack Profiles](docs/STACK-PROFILES.md). Updating an older install? Use [Upgrading](docs/UPGRADING.md).
+복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 열고, 스택별 overlay가 필요하면 [Stack Profiles](docs/STACK-PROFILES.md)를 봅니다. 이미 예전 `codex-foundry`가 들어 있는 저장소라면 bootstrap을 다시 돌리지 말고 [Upgrading](docs/UPGRADING.md)을 사용합니다.
 
-Then start with the default path:
+그다음 기본 작업 흐름으로 들어갑니다.
 
 ```text
 $feature-design
@@ -65,29 +65,29 @@ $implementation-plan
 $tdd-implement
 ```
 
-### Add It to an Existing Repository
+### 기존 저장소에 붙이기
 
-Use this when you already have a repository and want to inject the kit into it.
+이미 있는 저장소에 넣고 싶다면 bootstrap 스크립트를 쓰면 됩니다.
 
-Preview the copy first:
+먼저 dry-run으로 확인합니다.
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --dry-run
 ```
 
-Apply it when the preview looks right:
+괜찮으면 실제로 적용합니다.
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target .
 ```
 
-Need a stack overlay at bootstrap time? Add `--profile`:
+스택 overlay까지 같이 넣고 싶다면 `--profile`을 붙입니다.
 
 ```bash
 bash /path/to/codex-foundry/scripts/bootstrap.sh --source /path/to/codex-foundry --target . --profile nextjs-app-router
 ```
 
-Then run:
+그다음 아래를 실행합니다.
 
 ```text
 $codex-setup-check
@@ -97,9 +97,9 @@ $codex-setup-check
 bash scripts/codex-doctor.sh
 ```
 
-Need prompts fast? Open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md). If this repo already contains `codex-foundry`, use [Upgrading](docs/UPGRADING.md) instead of running bootstrap again.
+복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 열고, 이미 `codex-foundry`가 들어 있는 저장소를 갱신하려면 bootstrap 대신 [Upgrading](docs/UPGRADING.md)을 사용합니다.
 
-PowerShell works too:
+PowerShell도 지원합니다.
 
 ```powershell
 pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\codex-foundry -Target . -DryRun
@@ -107,44 +107,44 @@ pwsh -File C:\path\to\codex-foundry\scripts\bootstrap.ps1 -Source C:\path\to\cod
 pwsh -File scripts\codex-doctor.ps1
 ```
 
-## Default Workflow
+## 기본 워크플로우
 
-For copy-paste versions of these flows, use [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md). If a stack overlay is active, read `docs/STACK-PROFILE.md` before planning.
+이 흐름을 그대로 복붙해서 쓰고 싶다면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 보면 됩니다. 스택 overlay가 활성화돼 있다면 계획 전에 `docs/STACK-PROFILE.md`를 먼저 읽으면 됩니다.
 
-- New feature: `feature-design` -> `implementation-plan` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
-- Bug fix: `systematic-debug` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
-- Wrap-up after verified work: `finish-branch`
-- Session or bootstrap sanity check: `codex-setup-check`
+- 새 기능: `feature-design` -> `implementation-plan` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
+- 버그 수정: `systematic-debug` -> `tdd-implement` -> `request-code-review` -> `verification-gate`
+- 검증까지 끝난 작업 정리: `finish-branch`
+- 세션 시작이나 bootstrap 직후 점검: `codex-setup-check`
 
-## Advanced Codex Power
+## 고급 Codex 기능
 
-The default kit stays small. If a repository needs role-based review or docs verification, the advanced layer is there when you want it.
+기본 키트는 작게 두고, 더 큰 변경이나 문서 검증이 필요할 때만 고급 레이어를 켜는 방식입니다.
 
-- Stay with `.codex/config.example.toml` if you only want the minimal repo-local baseline.
-- Copy the advanced example when you want the experimental multi-agent layer:
+- 최소 레이어만 쓰고 싶다면 `.codex/config.example.toml`만 참고하면 됩니다.
+- 실험적인 multi-agent 레이어가 필요하면 아래처럼 복사해서 켭니다.
 
 ```bash
 cp .codex/config.multi-agent.example.toml .codex/config.toml
 ```
 
-- That enables the `explorer`, `reviewer`, and `docs_researcher` role setup.
-- See [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md) for the full notes and prompt examples.
+- 이 레이어에는 `explorer`, `reviewer`, `docs_researcher` 역할이 들어 있습니다.
+- 자세한 설명과 예시는 [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)에 있습니다.
 
-## What's Included
+## 포함 내용
 
-- `AGENTS.md` for repo-level Codex rules.
-- Eight repo-local skills: `feature-design`, `implementation-plan`, `tdd-implement`, `systematic-debug`, `request-code-review`, `verification-gate`, `finish-branch`, `codex-setup-check`.
-- Minimal `.codex` examples plus an opt-in multi-agent layer.
-- `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1` for executable setup diagnosis.
-- `scripts/upgrade.sh`, `scripts/upgrade.ps1`, and `.codex-foundry/manifest.toml` for safe updates.
-- `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, and [Releasing](docs/RELEASING.md) for release discipline.
-- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md) and [Stack Profiles](docs/STACK-PROFILES.md) for faster onboarding.
-- `scripts/bootstrap.sh` and `scripts/bootstrap.ps1` for safe injection into existing repos.
+- `AGENTS.md`로 레포 기본 규칙을 고정합니다.
+- 8개 repo-local 스킬: `feature-design`, `implementation-plan`, `tdd-implement`, `systematic-debug`, `request-code-review`, `verification-gate`, `finish-branch`, `codex-setup-check`
+- 최소 `.codex` 예시와 선택형 multi-agent 레이어를 함께 제공합니다.
+- `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`로 setup을 실제로 진단합니다.
+- `scripts/upgrade.sh`, `scripts/upgrade.ps1`, `.codex-foundry/manifest.toml`로 안전하게 업데이트합니다.
+- `VERSION`, `CHANGELOG.md`, `scripts/prepare-release.sh`, [Releasing](docs/RELEASING.md)로 릴리스 규율을 유지합니다.
+- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)와 [Stack Profiles](docs/STACK-PROFILES.md)로 빠르게 시작합니다.
+- `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`로 기존 저장소에 안전하게 주입합니다.
 
-## Docs
+## 문서
 
 - [First Steps](docs/FIRST-STEPS.md)
-- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md)
+- [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)
 - [Stack Profiles](docs/STACK-PROFILES.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
