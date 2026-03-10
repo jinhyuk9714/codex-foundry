@@ -9,6 +9,9 @@ if [[ "${SCRIPT_DIR}" == "${SCRIPT_SOURCE}" ]]; then
 fi
 ROOT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 
+# shellcheck source=/dev/null
+source "${SCRIPT_DIR}/manifest-tools.sh"
+
 skills=(
   "feature-design"
   "implementation-plan"
@@ -213,6 +216,23 @@ check_stack_overlay() {
   fi
 }
 
+check_manifest() {
+  local manifest_file="${ROOT_DIR}/.codex-foundry/manifest.toml"
+
+  if [[ ! -f "${manifest_file}" ]]; then
+    report_warn "Managed manifest is missing. This looks like a legacy repo."
+    add_next_step "bash scripts/upgrade.sh --source /path/to/codex-foundry --target . --adopt"
+    return
+  fi
+
+  if cf_load_manifest "${manifest_file}"; then
+    report_pass "Managed manifest is present and well-formed."
+  else
+    report_fail "Managed manifest is present but invalid: .codex-foundry/manifest.toml."
+    add_next_step "bash scripts/upgrade.sh --source /path/to/codex-foundry --target . --adopt"
+  fi
+}
+
 check_project_config() {
   local config_file="${ROOT_DIR}/.codex/config.toml"
   local missing_roles=()
@@ -294,6 +314,7 @@ check_skill_metadata
 check_minimal_config
 check_multi_agent_example
 check_stack_overlay
+check_manifest
 check_project_config
 check_environment
 

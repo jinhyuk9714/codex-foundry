@@ -22,6 +22,7 @@ Do not claim success without fresh evidence.
 - `bash tests/bootstrap_safety.sh`
 - `bash tests/profile_smoke.sh`
 - `bash tests/doctor_smoke.sh`
+- `bash tests/upgrade_smoke.sh`
 
 ## Rules
 

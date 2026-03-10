@@ -30,3 +30,6 @@ jobs:
 
       - name: Check setup doctor
         run: bash tests/doctor_smoke.sh
+
+      - name: Check safe upgrade path
+        run: bash tests/upgrade_smoke.sh

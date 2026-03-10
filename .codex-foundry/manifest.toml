@@ -1,0 +1,233 @@
+kit = "codex-foundry"
+manifest_version = 1
+source_commit = "template-copy"
+active_profile = ""
+
+[[files]]
+path = "README.md"
+sha256 = "9d00c6db8dfb90975868836c48f0e89922fb05c1529994c3e9ee1c3e40b172b4"
+
+[[files]]
+path = "README.ko.md"
+sha256 = "c33fa09d615cefa0228aa98676241bc67941cd6287e11787e604c98807b0e6ed"
+
+[[files]]
+path = "AGENTS.md"
+sha256 = "19b01de6ec17f18cefcac1ef0c6cf9f7b5bae3621636068cd8bce4e2e1d16471"
+
+[[files]]
+path = "LICENSE"
+sha256 = "768e5495eb8913133a534b71bccb609fd74f80e3bc1c61e42f6138c1214ee17b"
+
+[[files]]
+path = ".gitignore"
+sha256 = "1c3d22ee69ef337e0108a580ef8b6c4a6d2e17f699137e63a6215b5199e300fc"
+
+[[files]]
+path = ".github/workflows/repo-ci.yml"
+sha256 = "ba3531164779b615f4b2ef2585ae26befc7f9a77f46289031de3d8a8bc748844"
+
+[[files]]
+path = ".agents/skills/feature-design/SKILL.md"
+sha256 = "b12ed0e98b8552398e0635771184f0b93822aa9a525970af96270526bb8afc05"
+
+[[files]]
+path = ".agents/skills/feature-design/agents/openai.yaml"
+sha256 = "094945f369eac2fa3f44bc3205a0af40c9d38c574ae26df8e286ff92d59fd4a1"
+
+[[files]]
+path = ".agents/skills/implementation-plan/SKILL.md"
+sha256 = "65cc21910de0f8811ea03cca61c6f9801af47bece222803cc9d6b8ac8d88060c"
+
+[[files]]
+path = ".agents/skills/implementation-plan/agents/openai.yaml"
+sha256 = "1aa45c22eac8fa7fc5c184c156ba5c7299fd688726777424eaf332d91e6bf763"
+
+[[files]]
+path = ".agents/skills/tdd-implement/SKILL.md"
+sha256 = "85cd4339e63be7867c8923c06fadc3f891c3a025eb512b53af6dc1db77b9453e"
+
+[[files]]
+path = ".agents/skills/tdd-implement/agents/openai.yaml"
+sha256 = "bbfc6abc40fe4139e9f784e775d3954397355a86b52f16ea8ca4a9f087d39441"
+
+[[files]]
+path = ".agents/skills/systematic-debug/SKILL.md"
+sha256 = "4d69ac479779e02161500601a78cae16e2e955f3144a4badcbcafbc5a67bc2d5"
+
+[[files]]
+path = ".agents/skills/systematic-debug/agents/openai.yaml"
+sha256 = "6401feadb6dd3cc01841b8758ef86e3c6c80bb5b2250b0c3e5f86f5d60e2a5b6"
+
+[[files]]
+path = ".agents/skills/request-code-review/SKILL.md"
+sha256 = "9b73d166593fe7ab25391fe6593cc3bed910c5477fd5a8f145163a91a15bc9c5"
+
+[[files]]
+path = ".agents/skills/request-code-review/agents/openai.yaml"
+sha256 = "35661cd1a458706c37d0b86984f4724c4985f8d349613e443b0e09f2129e51fe"
+
+[[files]]
+path = ".agents/skills/verification-gate/SKILL.md"
+sha256 = "f8fadda928d70e8c6e0f87dbee67e5587720c1af5779fb2633a4f96224f11ece"
+
+[[files]]
+path = ".agents/skills/verification-gate/agents/openai.yaml"
+sha256 = "01f8557aaa7a15f18c32a67f7c1a62ad83da9b0d836dfe1e5373ab749c6b9e6b"
+
+[[files]]
+path = ".agents/skills/finish-branch/SKILL.md"
+sha256 = "cba7381ea280efff805c6250f79f3f0f2af8ee312d9955ebe973b92a20224c1d"
+
+[[files]]
+path = ".agents/skills/finish-branch/agents/openai.yaml"
+sha256 = "1d74d2e60bd5d0217ef9be1c871d2b40da68b32472afe92e02e576f29b1b5b7f"
+
+[[files]]
+path = ".agents/skills/codex-setup-check/SKILL.md"
+sha256 = "88b5a9007d708419755a96864276c8c04fe766a06d025fb3531bcbfeac7e86c9"
+
+[[files]]
+path = ".agents/skills/codex-setup-check/agents/openai.yaml"
+sha256 = "3459cac89a867468706eaf488ad23e34e3b31f766efc10dcae32c21a600ee56e"
+
+[[files]]
+path = ".codex/config.example.toml"
+sha256 = "098c4ee5be9d78ae6d77a1018de9722d0087bcae3d5ae316780be839bc6e5ed5"
+
+[[files]]
+path = ".codex/config.multi-agent.example.toml"
+sha256 = "a5f70703d87523c985150d7af9220f0963489bcd5475a854d24243635dd16ff9"
+
+[[files]]
+path = ".codex/agents/explorer.toml"
+sha256 = "b099ed31b86468a8229d85d186c280e0540e3d6013bfb4efa32eea5cccb0c1eb"
+
+[[files]]
+path = ".codex/agents/reviewer.toml"
+sha256 = "aea36bd7e9342666d34e530ec7624406818dd617fe5bcfb09cbc3b25f465e560"
+
+[[files]]
+path = ".codex/agents/docs-researcher.toml"
+sha256 = "96e33cd3a43bc5ec85d08675d2219cb6b32b22fb72441ead50ae20014d5213fa"
+
+[[files]]
+path = ".codex/mcp/README.md"
+sha256 = "34ebd28070626a4115d360dfd3e00fc2ec1f255068ac13bc8214189eb822ff93"
+
+[[files]]
+path = "docs/ADVANCED-CODEX-POWER.md"
+sha256 = "d3415b2a5a6049c25ef12f9429a66868ac7e111749145931e986f6dd4e9fa11a"
+
+[[files]]
+path = "docs/PROMPT-PLAYBOOKS.md"
+sha256 = "6f309df3a43a9ab87fd13693ccc32e888577fcf58f921f3b88896b1ca2686ebe"
+
+[[files]]
+path = "docs/PROMPT-PLAYBOOKS.ko.md"
+sha256 = "866fb292c669ae310f7db7e79187234ef669a6140faa0a2125705f955ab6bab2"
+
+[[files]]
+path = "docs/STACK-PROFILES.md"
+sha256 = "d6e7ed73b2fa781439dc904fe295da38ce1ce4c5c13c24b03b4622305447e30d"
+
+[[files]]
+path = "docs/SETUP-DOCTOR.md"
+sha256 = "35dd11196e7fe2ddd417d8e3a10efeca235ab3a9ebf53db7a2acea03c3c51e1c"
+
+[[files]]
+path = "docs/FIRST-STEPS.md"
+sha256 = "76e35d502e69d5efaf31ade2c557a66cab4fe581bcd557578e023303e0f59755"
+
+[[files]]
+path = "docs/WORKFLOWS.md"
+sha256 = "8ff81bf4332e3277375087010504de3f3034d1e7209dc6d21bf98220d01f541d"
+
+[[files]]
+path = "docs/CUSTOMIZATION.md"
+sha256 = "de67d5be61f0c0a68aa98b059551539ce8024a0612a93661e94873c9263761c2"
+
+[[files]]
+path = "docs/UPGRADING.md"
+sha256 = "fc5a459ab600abb8c957ac8bcf64a64c512335882d07493b1e5292f3f9023572"
+
+[[files]]
+path = "profiles/nextjs-app-router/docs/STACK-PROFILE.md"
+sha256 = "bdd525710603fa2cd531daace6a5eff5cdaef07b1920dd48c491e61cc1bf1378"
+
+[[files]]
+path = "profiles/nextjs-app-router/docs/STACK-PROMPT-PLAYBOOKS.md"
+sha256 = "74692438175e2ebe183e8888101861ef558c1e34a643989c0a76ef3595ad9982"
+
+[[files]]
+path = "profiles/node-api/docs/STACK-PROFILE.md"
+sha256 = "dc271c349c74eb51b563e57042aa58d1a52aa9055b94648df45652f6bd798bff"
+
+[[files]]
+path = "profiles/node-api/docs/STACK-PROMPT-PLAYBOOKS.md"
+sha256 = "e5d7be83192daceb953fcdd6aae25a2e6e63390a363dfdc6164a815f0eb55659"
+
+[[files]]
+path = "profiles/python-service/docs/STACK-PROFILE.md"
+sha256 = "edf7228074b9013672c0bbe78444c661845c2a9dac3a3135854c8c4b1007fd27"
+
+[[files]]
+path = "profiles/python-service/docs/STACK-PROMPT-PLAYBOOKS.md"
+sha256 = "4ce47e8f107e082b704790164b2c677eef9495bd201922e4f5e692c975f0b736"
+
+[[files]]
+path = "scripts/bootstrap.sh"
+sha256 = "5d067f6a2f41dbc2b9d7e5479520bcfab71962ffd709ee772ed6951c72ff12f6"
+
+[[files]]
+path = "scripts/bootstrap.ps1"
+sha256 = "2e5c94d09e51764db21deea21592850f0c1edc851febd4789c1061f57975de71"
+
+[[files]]
+path = "scripts/codex-doctor.sh"
+sha256 = "1add7dcc145c95329cbcf1c47316499a9b39d6c80955c84a755ce110f858d56f"
+
+[[files]]
+path = "scripts/codex-doctor.ps1"
+sha256 = "658073cbac2212b3b0bfef0ad3821c37099fcad7dc2beeaa4e400aa65a626abf"
+
+[[files]]
+path = "scripts/upgrade.sh"
+sha256 = "da25a9ded9b46e7cf4a3c23939a794b8e6036c53d414aeccc9a7da2c2d458fb6"
+
+[[files]]
+path = "scripts/upgrade.ps1"
+sha256 = "62fa9d128b1d2595fcd874fdce5e9dc40b75dc8ca6618212f2b67dea0f287052"
+
+[[files]]
+path = "scripts/managed-files.txt"
+sha256 = "603a482916ef7d3e24c2c3028b7f7802c5ffd59ba54f19bb4411a84be24f34cb"
+
+[[files]]
+path = "scripts/bootstrap-files.txt"
+sha256 = "2627bd111af0b5e49fd896f5d7608259e4ce6332b0b34c9ae74245463cd0ce26"
+
+[[files]]
+path = "scripts/manifest-tools.sh"
+sha256 = "bdd1a5dbae7007da014e3b99306cbb5325882a16f67b89c7000773bb56240a74"
+
+[[files]]
+path = "tests/validate_repo.sh"
+sha256 = "67e34a3f464c82739e9fa583c4e6778761c50138775a7eb2b3259d3d1c0ac8c9"
+
+[[files]]
+path = "tests/bootstrap_safety.sh"
+sha256 = "8872aac8df15353030e2916a5a2d4554ff12fcfe4c79e2476aed41b5ebee1987"
+
+[[files]]
+path = "tests/profile_smoke.sh"
+sha256 = "c12dfa3db6cd3d6ae1ad20fd2a95df3db7e3a07cf9bc3dc2d31c1a48638f5ca0"
+
+[[files]]
+path = "tests/doctor_smoke.sh"
+sha256 = "3d7871f5ff473190427faf89c00f08bcafda1c670fdfc4be58e61dacc3babe02"
+
+[[files]]
+path = "tests/upgrade_smoke.sh"
+sha256 = "e040a68638fcf6cfff05588a3c3f9338cc5903b5cb4f3c5f2a8dd0cb2f5a56b0"
+

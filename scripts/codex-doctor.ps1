@@ -67,6 +67,22 @@ function Test-ValidStackProfileId {
     return @("nextjs-app-router", "node-api", "python-service").Contains($ProfileId)
 }
 
+function Test-ManagedManifest {
+    param([string]$ManifestPath)
+    if (-not (Test-Path -LiteralPath $ManifestPath)) {
+        return $false
+    }
+
+    $content = Get-Content -LiteralPath $ManifestPath
+    $hasKit = $content -contains 'kit = "codex-foundry"'
+    $hasVersion = $content -contains 'manifest_version = 1'
+    $hasSourceCommit = $content | Where-Object { $_ -match '^source_commit = ".+"' } | Select-Object -First 1
+    $hasActiveProfile = $content | Where-Object { $_ -match '^active_profile = ".*"' } | Select-Object -First 1
+    $hasFiles = $content -contains '[[files]]'
+
+    return ($hasKit -and $hasVersion -and $hasSourceCommit -and $hasActiveProfile -and $hasFiles)
+}
+
 $agentsPath = Join-Path $rootDir "AGENTS.md"
 if (Test-Path -LiteralPath $agentsPath) {
     Report-Pass "Root AGENTS.md is present."
@@ -172,6 +188,19 @@ if ((Test-Path -LiteralPath $stackProfilePath) -or (Test-Path -LiteralPath $stac
         Report-Fail "Stack profile overlay is incomplete: $(Join-Items $stackIssues)."
         Add-NextStep "bash tests/profile_smoke.sh"
     }
+}
+
+$manifestPath = Join-Path $rootDir ".codex-foundry/manifest.toml"
+if (Test-Path -LiteralPath $manifestPath) {
+    if (Test-ManagedManifest $manifestPath) {
+        Report-Pass "Managed manifest is present and well-formed."
+    } else {
+        Report-Fail "Managed manifest is present but invalid: .codex-foundry/manifest.toml."
+        Add-NextStep "pwsh -File scripts/upgrade.ps1 -Source C:\path\to\codex-foundry -Target . -Adopt"
+    }
+} else {
+    Report-Warn "Managed manifest is missing. This looks like a legacy repo."
+    Add-NextStep "bash scripts/upgrade.sh --source /path/to/codex-foundry --target . --adopt"
 }
 
 $projectConfig = Join-Path $rootDir ".codex/config.toml"

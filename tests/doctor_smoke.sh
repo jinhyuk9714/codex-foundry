@@ -37,6 +37,7 @@ fi
 grep -q "Summary: " "${FULL_LOG}" || fail "doctor should print a summary"
 grep -q "\\[PASS\\]" "${FULL_LOG}" || fail "doctor should report passing checks on the template repo"
 ! grep -q "\\[FAIL\\]" "${FULL_LOG}" || fail "doctor should not report failures on the complete template repo"
+grep -q "\\[PASS\\] Managed manifest is present and well-formed." "${FULL_LOG}" || fail "doctor should validate the managed manifest on the template repo"
 
 MISSING_SKILL_DIR="${TMP_DIR}/missing-skill"
 "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${MISSING_SKILL_DIR}" > /dev/null
@@ -66,6 +67,16 @@ if run_doctor "${MISSING_ROLE_DIR}" "${MISSING_ROLE_LOG}"; then
   fail "doctor should fail when the project config references a missing role file"
 fi
 grep -q "\\[FAIL\\] .codex/config.toml references missing role files:" "${MISSING_ROLE_LOG}" || fail "doctor should report missing multi-agent role files"
+
+LEGACY_DIR="${TMP_DIR}/legacy"
+"${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${LEGACY_DIR}" > /dev/null
+rm -f "${LEGACY_DIR}/.codex-foundry/manifest.toml"
+LEGACY_LOG="${TMP_DIR}/legacy.log"
+if ! run_doctor "${LEGACY_DIR}" "${LEGACY_LOG}"; then
+  fail "doctor should warn, not fail, when a legacy repo is missing the manifest"
+fi
+grep -q "\\[WARN\\] Managed manifest is missing. This looks like a legacy repo." "${LEGACY_LOG}" || fail "doctor should warn when the managed manifest is missing"
+grep -q "scripts/upgrade.sh --source" "${LEGACY_LOG}" || fail "doctor should recommend the adopt upgrade path for legacy repos"
 
 NO_NPX_DIR="${TMP_DIR}/no-npx"
 "${BOOTSTRAP}" --source "${ROOT_DIR}" --target "${NO_NPX_DIR}" > /dev/null

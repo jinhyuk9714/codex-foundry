@@ -56,7 +56,8 @@ bash scripts/codex-doctor.sh
 
 7. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
 8. If you want a stack-specific overlay, see [Stack Profiles](docs/STACK-PROFILES.md) and copy one profile into `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
-9. Then start work with the default path:
+9. If this repo already has an older `codex-foundry` install, use [Upgrading](docs/UPGRADING.md) instead of re-running bootstrap.
+10. Then start work with the default path:
 
 ```text
 $feature-design
@@ -100,6 +101,7 @@ bash scripts/codex-doctor.sh
 ```
 
 6. If you want copy-paste prompts, open [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.md).
+7. If this repository already has `codex-foundry`, use [Upgrading](docs/UPGRADING.md) for safe manifest-aware updates instead of re-running bootstrap.
 
 PowerShell works too:
 
@@ -139,6 +141,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - Minimal `.codex` examples: `.codex/config.example.toml` and `.codex/mcp/README.md`.
 - Opt-in multi-agent layer: `.codex/config.multi-agent.example.toml` and `.codex/agents/`.
 - Executable doctor scripts: `scripts/codex-doctor.sh` and `scripts/codex-doctor.ps1`.
+- Safe upgrade path: `scripts/upgrade.sh`, `scripts/upgrade.ps1`, and `.codex-foundry/manifest.toml`.
 - Prompt playbooks: `docs/PROMPT-PLAYBOOKS.md` for bootstrap, feature, and bugfix flows.
 - Stack profiles: `docs/STACK-PROFILES.md` plus optional injected `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md`.
 - Safe bootstrap scripts: `scripts/bootstrap.sh` and `scripts/bootstrap.ps1`.
@@ -152,6 +155,7 @@ bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
 bash tests/profile_smoke.sh
 bash tests/doctor_smoke.sh
+bash tests/upgrade_smoke.sh
 ```
 
 ## Docs
@@ -161,5 +165,6 @@ bash tests/doctor_smoke.sh
 - [Stack Profiles](docs/STACK-PROFILES.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
+- [Upgrading](docs/UPGRADING.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)
 - [Setup Doctor](docs/SETUP-DOCTOR.md)

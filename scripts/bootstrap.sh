@@ -6,7 +6,8 @@ usage() {
   cat <<'EOF'
 Usage: bootstrap.sh [--source PATH] [--target PATH] [--profile ID] [--dry-run] [--force]
 
-Copies codex-foundry into an existing repository.
+Copies the codex-foundry kit into an existing repository and writes
+.codex-foundry/manifest.toml for future safe upgrades.
 
 Options:
   --source PATH  Source starter-kit repo. Defaults to this script's repo root.
@@ -25,15 +26,20 @@ DRY_RUN=0
 FORCE=0
 PROFILE=""
 
-is_valid_profile() {
-  case "$1" in
-    nextjs-app-router|node-api|python-service)
-      return 0
-      ;;
-    *)
-      return 1
-      ;;
-  esac
+# shellcheck source=/dev/null
+source "${SCRIPT_DIR}/manifest-tools.sh"
+
+# bootstrap-files.txt includes public entrypoints such as scripts/upgrade.sh,
+# scripts/upgrade.ps1, docs/UPGRADING.md, and the support files needed to
+# generate .codex-foundry/manifest.toml.
+declare -a bootstrap_paths=()
+declare -a source_paths=()
+declare -a target_paths=()
+declare -a manifest_paths=()
+
+add_copy() {
+  source_paths+=("$1")
+  target_paths+=("$2")
 }
 
 while [[ $# -gt 0 ]]; do
@@ -74,61 +80,23 @@ SOURCE_DIR="$(cd "${SOURCE_DIR}" && pwd)"
 mkdir -p "${TARGET_DIR}"
 TARGET_DIR="$(cd "${TARGET_DIR}" && pwd)"
 
-if [[ -n "${PROFILE}" ]] && ! is_valid_profile "${PROFILE}"; then
+if [[ -n "${PROFILE}" ]] && ! cf_is_valid_profile "${PROFILE}"; then
   echo "Unknown profile: ${PROFILE}" >&2
   echo "Allowed profiles: nextjs-app-router, node-api, python-service" >&2
   exit 1
 fi
 
-base_paths=(
-  "AGENTS.md"
-  ".agents/skills/feature-design"
-  ".agents/skills/implementation-plan"
-  ".agents/skills/tdd-implement"
-  ".agents/skills/systematic-debug"
-  ".agents/skills/request-code-review"
-  ".agents/skills/verification-gate"
-  ".agents/skills/finish-branch"
-  ".agents/skills/codex-setup-check"
-  ".codex/config.example.toml"
-  ".codex/config.multi-agent.example.toml"
-  ".codex/agents/explorer.toml"
-  ".codex/agents/reviewer.toml"
-  ".codex/agents/docs-researcher.toml"
-  ".codex/mcp/README.md"
-  "scripts/codex-doctor.sh"
-  "scripts/codex-doctor.ps1"
-  "docs/ADVANCED-CODEX-POWER.md"
-  "docs/PROMPT-PLAYBOOKS.md"
-  "docs/PROMPT-PLAYBOOKS.ko.md"
-  "docs/STACK-PROFILES.md"
-  "docs/SETUP-DOCTOR.md"
-  "docs/FIRST-STEPS.md"
-  "docs/WORKFLOWS.md"
-  "docs/CUSTOMIZATION.md"
-  "profiles/nextjs-app-router/docs/STACK-PROFILE.md"
-  "profiles/nextjs-app-router/docs/STACK-PROMPT-PLAYBOOKS.md"
-  "profiles/node-api/docs/STACK-PROFILE.md"
-  "profiles/node-api/docs/STACK-PROMPT-PLAYBOOKS.md"
-  "profiles/python-service/docs/STACK-PROFILE.md"
-  "profiles/python-service/docs/STACK-PROMPT-PLAYBOOKS.md"
-)
+cf_read_list_file "${SOURCE_DIR}/scripts/bootstrap-files.txt" bootstrap_paths
 
-declare -a source_paths=()
-declare -a target_paths=()
-
-add_copy() {
-  source_paths+=("$1")
-  target_paths+=("$2")
-}
-
-for rel in "${base_paths[@]}"; do
+for rel in "${bootstrap_paths[@]}"; do
   add_copy "${rel}" "${rel}"
+  manifest_paths+=("${rel}")
 done
 
 if [[ -n "${PROFILE}" ]]; then
   add_copy "profiles/${PROFILE}/docs/STACK-PROFILE.md" "docs/STACK-PROFILE.md"
   add_copy "profiles/${PROFILE}/docs/STACK-PROMPT-PLAYBOOKS.md" "docs/STACK-PROMPT-PLAYBOOKS.md"
+  manifest_paths+=("docs/STACK-PROFILE.md" "docs/STACK-PROMPT-PLAYBOOKS.md")
 fi
 
 for i in "${!source_paths[@]}"; do
@@ -145,12 +113,19 @@ for i in "${!source_paths[@]}"; do
   fi
 done
 
+if [[ -e "${TARGET_DIR}/.codex-foundry/manifest.toml" && "${FORCE}" -ne 1 ]]; then
+  echo "Target path already exists: ${TARGET_DIR}/.codex-foundry/manifest.toml" >&2
+  echo "Re-run with --force to overwrite it." >&2
+  exit 1
+fi
+
 echo "Source: ${SOURCE_DIR}"
 echo "Target: ${TARGET_DIR}"
 echo "Planned copies:"
 for rel in "${target_paths[@]}"; do
   echo " - ${rel}"
 done
+echo " - .codex-foundry/manifest.toml"
 
 if [[ "${DRY_RUN}" -eq 1 ]]; then
   echo "Dry run only. No files were written."
@@ -166,6 +141,12 @@ for i in "${!source_paths[@]}"; do
   fi
   cp -R "${src}" "${dest}"
 done
+
+if [[ -e "${TARGET_DIR}/.codex-foundry/manifest.toml" && "${FORCE}" -eq 1 ]]; then
+  rm -f "${TARGET_DIR}/.codex-foundry/manifest.toml"
+fi
+
+cf_write_manifest "${TARGET_DIR}" "$(cf_source_commit "${SOURCE_DIR}")" "${PROFILE}" "${manifest_paths[@]}"
 
 echo "Bootstrap complete."
 echo "Next step: open the target repo in Codex, run \$codex-setup-check, then run bash scripts/codex-doctor.sh."

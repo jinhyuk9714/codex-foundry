@@ -15,10 +15,11 @@ Confirm that the repository is ready for Codex to work the intended way, then ro
 4. Confirm `.codex/config.example.toml` and `.codex/mcp/README.md` exist.
 5. Confirm `.codex/config.multi-agent.example.toml` and `.codex/agents/*.toml` are internally consistent when present.
 6. If `docs/STACK-PROFILE.md` and `docs/STACK-PROMPT-PLAYBOOKS.md` exist, treat them as the active stack overlay and confirm they are both present together.
-7. Tell the user to run `bash scripts/codex-doctor.sh` or `pwsh -File scripts/codex-doctor.ps1` for the executable diagnosis pass.
-8. After the doctor, point the user at `docs/PROMPT-PLAYBOOKS.md` or `docs/PROMPT-PLAYBOOKS.ko.md` for generic prompts, and at `docs/STACK-PROFILE.md` if a stack overlay is active.
-9. Use the doctor output to point them at the next command, such as `/status`, `/debug-config`, or `/mcp`.
-10. Report any missing pieces with the smallest corrective action.
+7. Check whether `.codex-foundry/manifest.toml` exists. If it is missing, treat the repo as a legacy install and point the user at `bash scripts/upgrade.sh --source /path/to/codex-foundry --target . --adopt` or `pwsh -File scripts/upgrade.ps1 -Source C:\path\to\codex-foundry -Target . -Adopt`.
+8. Tell the user to run `bash scripts/codex-doctor.sh` or `pwsh -File scripts/codex-doctor.ps1` for the executable diagnosis pass.
+9. After the doctor, point the user at `docs/PROMPT-PLAYBOOKS.md` or `docs/PROMPT-PLAYBOOKS.ko.md` for generic prompts, and at `docs/STACK-PROFILE.md` if a stack overlay is active.
+10. Use the doctor output to point them at the next command, such as `/status`, `/debug-config`, `/mcp`, or `bash scripts/upgrade.sh --source /path/to/codex-foundry --target .`.
+11. Report any missing pieces with the smallest corrective action.
 
 ## Rules
 

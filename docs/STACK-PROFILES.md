@@ -59,3 +59,4 @@ The base kit still stays in place. Profiles do not replace the 8 skills, the doc
 - Read `docs/STACK-PROFILE.md` before choosing stack-specific commands or file placement.
 - Use `docs/STACK-PROMPT-PLAYBOOKS.md` if you want copy-paste prompts tuned for that stack.
 - Re-run `$codex-setup-check` and `bash scripts/codex-doctor.sh` after the overlay is in place.
+- If you update this repo later, use [UPGRADING.md](UPGRADING.md). The active profile is tracked and upgrade does not switch profiles for you.

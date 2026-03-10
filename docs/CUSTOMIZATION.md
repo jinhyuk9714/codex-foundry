@@ -77,6 +77,16 @@ If you create a new repository from this template:
 - Replace or remove the upstream CI badge in `README.md` and `README.ko.md`.
 - Copy or adapt `.github/workflows/repo-ci.yml` only if you want the same verification gate in your own repository.
 - Keep your repository's real verification commands aligned with the workflow steps instead of leaving the upstream defaults in place.
+- Keep `.codex-foundry/manifest.toml` in version control so future upgrades can detect local edits safely.
+- Use [UPGRADING.md](UPGRADING.md) when you want to move to a newer `codex-foundry` source without overwriting user changes.
+
+## Upgrading Existing Repos
+
+Use `scripts/upgrade.sh` or `scripts/upgrade.ps1` when a repo already contains `codex-foundry` and you want a newer upstream version.
+
+- Tracked repos should keep `.codex-foundry/manifest.toml` and use the normal upgrade path.
+- Legacy repos without a manifest should adopt first with `--adopt` or `-Adopt`.
+- Treat [UPGRADING.md](UPGRADING.md) as the source of truth for conflict handling and profile-aware upgrades.
 
 ## Updating the Kit
 

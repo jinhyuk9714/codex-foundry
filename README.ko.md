@@ -56,7 +56,8 @@ bash scripts/codex-doctor.sh
 
 7. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
 8. 스택별 overlay가 필요하면 [Stack Profiles](docs/STACK-PROFILES.md)를 보고 `docs/STACK-PROFILE.md`, `docs/STACK-PROMPT-PLAYBOOKS.md`를 적용합니다.
-9. 그다음 기본 작업 흐름으로 들어갑니다.
+9. 이미 예전 `codex-foundry`가 들어 있는 저장소라면 bootstrap을 다시 돌리지 말고 [Upgrading](docs/UPGRADING.md)으로 안전하게 업데이트합니다.
+10. 그다음 기본 작업 흐름으로 들어갑니다.
 
 ```text
 $feature-design
@@ -100,6 +101,7 @@ bash scripts/codex-doctor.sh
 ```
 
 6. 복붙 가능한 입력 예시가 필요하면 [Prompt Playbooks](docs/PROMPT-PLAYBOOKS.ko.md)를 엽니다.
+7. 이미 `codex-foundry`가 들어 있는 저장소를 갱신하려면 bootstrap 대신 [Upgrading](docs/UPGRADING.md)을 사용합니다.
 
 PowerShell도 지원합니다.
 
@@ -139,6 +141,7 @@ cp .codex/config.multi-agent.example.toml .codex/config.toml
 - 최소 `.codex` 예시: `.codex/config.example.toml`, `.codex/mcp/README.md`
 - 선택형 multi-agent 레이어: `.codex/config.multi-agent.example.toml`, `.codex/agents/`
 - 실행형 doctor 스크립트: `scripts/codex-doctor.sh`, `scripts/codex-doctor.ps1`
+- 안전한 업그레이드 경로: `scripts/upgrade.sh`, `scripts/upgrade.ps1`, `.codex-foundry/manifest.toml`
 - Prompt Playbooks: `docs/PROMPT-PLAYBOOKS.ko.md`에서 bootstrap, feature, bugfix 예시 제공
 - Stack Profiles: `docs/STACK-PROFILES.md`와 선택형 `docs/STACK-PROFILE.md`, `docs/STACK-PROMPT-PLAYBOOKS.md`
 - 안전한 주입 스크립트: `scripts/bootstrap.sh`, `scripts/bootstrap.ps1`
@@ -152,6 +155,7 @@ bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
 bash tests/profile_smoke.sh
 bash tests/doctor_smoke.sh
+bash tests/upgrade_smoke.sh
 ```
 
 ## 문서
@@ -161,5 +165,6 @@ bash tests/doctor_smoke.sh
 - [Stack Profiles](docs/STACK-PROFILES.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Customization](docs/CUSTOMIZATION.md)
+- [Upgrading](docs/UPGRADING.md)
 - [Advanced Codex Power](docs/ADVANCED-CODEX-POWER.md)
 - [Setup Doctor](docs/SETUP-DOCTOR.md)

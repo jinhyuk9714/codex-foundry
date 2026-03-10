@@ -9,6 +9,7 @@
 
 - Prefer repo-local skills in `.agents/skills` before relying on global skills.
 - If `docs/STACK-PROFILE.md` exists, treat it as the active stack overlay before guessing stack-specific commands, layout, or verification.
+- Treat `.codex-foundry/manifest.toml` as the managed baseline for safe upgrades. If it is missing in an older repo, adopt it before trying to upgrade.
 - Do not expand scope without user approval. No drive-by refactors or opportunistic cleanup.
 - Do not claim completion without fresh verification output.
 - Keep skill names, docs, and examples aligned. If you rename a workflow, update every user-facing reference in the same change.
@@ -19,3 +20,4 @@
 - Run `bash tests/bootstrap_safety.sh`.
 - Run `bash tests/profile_smoke.sh`.
 - Run `bash tests/doctor_smoke.sh`.
+- Run `bash tests/upgrade_smoke.sh`.

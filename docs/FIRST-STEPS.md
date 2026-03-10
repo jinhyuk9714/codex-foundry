@@ -37,6 +37,7 @@ If you want the copy-paste version of that flow, use [Prompt Playbooks](PROMPT-P
 - Opt in to `openaiDeveloperDocs` or `context7` only when they add value for the repo.
 - Review `docs/ADVANCED-CODEX-POWER.md` only if you want the experimental multi-agent layer.
 - Review [Stack Profiles](STACK-PROFILES.md) if you want `--profile` bootstrap or a stack-specific overlay.
+- If this repo already uses `codex-foundry` and you want a newer kit version, use [Upgrading](UPGRADING.md) instead of re-running bootstrap blindly.
 - Use [Prompt Playbooks](PROMPT-PLAYBOOKS.md#bootstrap-playbook) if you want the shortest onboarding path.
 
 ## 5. Verify Before You Trust the Kit
@@ -46,4 +47,5 @@ bash scripts/codex-doctor.sh
 bash tests/validate_repo.sh
 bash tests/bootstrap_safety.sh
 bash tests/profile_smoke.sh
+bash tests/upgrade_smoke.sh
 ```
